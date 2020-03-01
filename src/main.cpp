@@ -81,7 +81,7 @@ void setup()
 
 void loop()
 {
-  int current_id = 3;
+  // int current_id = 3;
   // put your main code here, to run repeatedly:
 
   // Please refer to e-Manual(http://emanual.robotis.com/docs/en/parts/interface/dynamixel_shield/) for available range of value.
@@ -92,7 +92,7 @@ void loop()
   //  while (dxl.readControlTableItem(MOVING, current_id) == 1);
 
 
-  delay(1000);
+
   // // Print present position in raw value
   // DEBUG_SERIAL.print("Present Position(raw) : ");
   // DEBUG_SERIAL.println(dxl.getPresentPosition(current_id));
@@ -106,17 +106,30 @@ void loop()
   // DEBUG_SERIAL.println(dxl.getPresentPosition(current_id, UNIT_DEGREE));
   // delay(1000);
 
-  long position = random(0, 4095);
-  long speed = random(0, 1023);
+  long position = 0; //random(0, 4095);
+  long speed =  500;// random(0, 1023);
   // dxl.writeControlTableItem(GOAL_POSITION, current_id, );
 
   for (int current_id = 2; current_id < 6; current_id++)
   {
     dxl.writeControlTableItem(MOVING_SPEED, current_id, speed);
-    delay(1000);
+  }
+  delay(500);
+
+  for (int current_id = 2; current_id < 6; current_id++)
+  {
     dxl.writeControlTableItem(GOAL_POSITION, current_id, position);
-    delay(1000);
-    while (dxl.readControlTableItem(MOVING, current_id) == 1);
+    // while (dxl.readControlTableItem(MOVING, current_id) == 1);
+    delay(500);
       
   }
+
+    for (int current_id = 2; current_id < 6; current_id++)
+  {
+    dxl.writeControlTableItem(GOAL_POSITION, current_id, 500);
+    // while (dxl.readControlTableItem(MOVING, current_id) == 1);
+    delay(500);
+      
+  }
+
 }
