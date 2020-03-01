@@ -77,6 +77,15 @@ void setup()
     dxl.setOperatingMode(current_id, OP_POSITION);
     dxl.torqueOn(current_id);
   }
+
+  long position = 0; //random(0, 4095);
+  long speed =  200;// random(0, 1023);
+  // dxl.writeControlTableItem(GOAL_POSITION, current_id, );
+
+  for (int current_id = 2; current_id < 6; current_id++)
+  {
+    dxl.writeControlTableItem(MOVING_SPEED, current_id, speed);
+  }
 }
 
 void loop()
@@ -106,30 +115,24 @@ void loop()
   // DEBUG_SERIAL.println(dxl.getPresentPosition(current_id, UNIT_DEGREE));
   // delay(1000);
 
-  long position = 0; //random(0, 4095);
-  long speed =  500;// random(0, 1023);
-  // dxl.writeControlTableItem(GOAL_POSITION, current_id, );
+  
+  //delay(500);
 
   for (int current_id = 2; current_id < 6; current_id++)
   {
-    dxl.writeControlTableItem(MOVING_SPEED, current_id, speed);
-  }
-  delay(500);
-
-  for (int current_id = 2; current_id < 6; current_id++)
-  {
-    dxl.writeControlTableItem(GOAL_POSITION, current_id, position);
+    dxl.writeControlTableItem(GOAL_POSITION, current_id, 0);
     // while (dxl.readControlTableItem(MOVING, current_id) == 1);
-    delay(500);
+    
       
   }
-
+  delay(2000);
     for (int current_id = 2; current_id < 6; current_id++)
   {
-    dxl.writeControlTableItem(GOAL_POSITION, current_id, 500);
+    dxl.writeControlTableItem(GOAL_POSITION, current_id, 2000);
     // while (dxl.readControlTableItem(MOVING, current_id) == 1);
-    delay(500);
+    //delay(500);
       
   }
+  delay(2000);
 
 }
