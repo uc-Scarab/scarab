@@ -1,5 +1,4 @@
 .ccls
-                                                                       .clang_complete
-                                                                       .gcc-flags.json
-                                                                       .pio/
-
+.clang_complete
+.gcc-flags.json
+.pio/
