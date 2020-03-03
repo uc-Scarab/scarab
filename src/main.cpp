@@ -50,6 +50,8 @@ const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 // const uint8_t current_id = 1;
 const float DXL_PROTOCOL_VERSION = 1.0;
 
+int incomingByte = 0;
+
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 
 void setup()
@@ -65,6 +67,8 @@ void setup()
   // Set Port Protocol Version. This has to match with DYNAMIXEL protocol version.
   dxl.setPortProtocolVersion(DXL_PROTOCOL_VERSION);
   // Get DYNAMIXEL information
+  //Serial.begin(9600);
+  
 
   for (int current_id = 2; current_id < 6; current_id++)
   {
@@ -78,18 +82,25 @@ void setup()
     dxl.torqueOn(current_id);
   }
 
-  long position = 0; //random(0, 4095);
+  //long position = 0; //random(0, 4095);
   long speed =  200;// random(0, 1023);
   // dxl.writeControlTableItem(GOAL_POSITION, current_id, );
 
-  for (int current_id = 2; current_id < 6; current_id++)
+  for(int current_id = 2; current_id < 6; current_id++)
   {
     dxl.writeControlTableItem(MOVING_SPEED, current_id, speed);
   }
-}
+  for(int current_id = 2; current_id < 6; current_id++)
+  {
+    dxl.writeControlTableItem(GOAL_POSITION, current_id, 0);
+  }
+  }
+
+
 
 void loop()
 {
+
   // int current_id = 3;
   // put your main code here, to run repeatedly:
 
@@ -99,7 +110,16 @@ void loop()
   //  delay(1000);
   //  dxl.setGoalPosition(current_id, 1000);
   //  while (dxl.readControlTableItem(MOVING, current_id) == 1);
-
+  char buffer[6];
+  if(DEBUG_SERIAL.available() > 0){
+       DEBUG_SERIAL.readBytes(buffer, 2);
+       DEBUG_SERIAL.println(buffer[0]);
+  }
+    //for(int current_id = 2; current_id < 6; current_id++)
+    //{
+        //dxl.writeControlTableItem(MOVING_SPEED, current_id, incomingByte);
+    //}
+  //}
 
 
   // // Print present position in raw value
@@ -118,21 +138,21 @@ void loop()
   
   //delay(500);
 
-  for (int current_id = 2; current_id < 6; current_id++)
-  {
-    dxl.writeControlTableItem(GOAL_POSITION, current_id, 0);
-    // while (dxl.readControlTableItem(MOVING, current_id) == 1);
+  //for(int current_id = 2; current_id < 6; current_id++)
+  //{
+    //dxl.writeControlTableItem(GOAL_POSITION, current_id, 0);
+    //// while (dxl.readControlTableItem(MOVING, current_id) == 1);
     
       
-  }
-  delay(2000);
-    for (int current_id = 2; current_id < 6; current_id++)
-  {
-    dxl.writeControlTableItem(GOAL_POSITION, current_id, 2000);
-    // while (dxl.readControlTableItem(MOVING, current_id) == 1);
-    //delay(500);
+  //}
+  //delay(2000);
+    //for(int current_id = 2; current_id < 6; current_id++)
+  //{
+    //dxl.writeControlTableItem(GOAL_POSITION, current_id, 2000);
+    //// while (dxl.readControlTableItem(MOVING, current_id) == 1);
+    ////delay(500);
       
-  }
-  delay(2000);
+  //}
+  //delay(2000);
 
 }
