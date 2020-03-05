@@ -53,7 +53,7 @@ const float DXL_PROTOCOL_VERSION = 1.0;
 int incomingByte = 0;
 
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
-
+#define INT_JOIN_BYTE(u, l) (u << 8) | l
 void setup()
 {
   // put your setup code here, to run once:
@@ -94,8 +94,11 @@ void setup()
   {
     dxl.writeControlTableItem(GOAL_POSITION, current_id, 0);
   }
-  }
+    //dxl.writeControlTableItem(MOVING_SPEED, 02, 0900);
+  
+} 
 
+ 
 
 
 void loop()
@@ -108,13 +111,14 @@ void loop()
   // Set Goal Position in RAW value
   //  dxl.setGoalPosition(current_id, 0);
   //  delay(1000);
-  //  dxl.setGoalPosition(current_id, 1000);
-  //  while (dxl.readControlTableItem(MOVING, current_id) == 1);
-  char buffer[6];
+     //while (dxl.readControlTableItem(MOVING, current_id) == 1);
+  uint8_t buffer[3];
   if(DEBUG_SERIAL.available() > 0){
-       DEBUG_SERIAL.readBytes(buffer, 2);
-       DEBUG_SERIAL.println(buffer[0]);
+       DEBUG_SERIAL.readBytes(buffer, 3);
+       DEBUG_SERIAL.println(int(buffer));
+       dxl.writeControlTableItem(MOVING_SPEED, buffer[0], INT_JOIN_BYTE(buffer[2], buffer[3]));
   }
+       
     //for(int current_id = 2; current_id < 6; current_id++)
     //{
         //dxl.writeControlTableItem(MOVING_SPEED, current_id, incomingByte);
@@ -137,22 +141,30 @@ void loop()
 
   
   //delay(500);
+  
+
+  
 
   //for(int current_id = 2; current_id < 6; current_id++)
   //{
-    //dxl.writeControlTableItem(GOAL_POSITION, current_id, 0);
-    //// while (dxl.readControlTableItem(MOVING, current_id) == 1);
+    //dxl.writeControlTableItem(MOVING_SPEED, current_id, 0);
+     //while (dxl.readControlTableItem(MOVING, current_id) == 1);
     
-      
   //}
   //delay(2000);
-    //for(int current_id = 2; current_id < 6; current_id++)
-  //{
-    //dxl.writeControlTableItem(GOAL_POSITION, current_id, 2000);
-    //// while (dxl.readControlTableItem(MOVING, current_id) == 1);
-    ////delay(500);
-      
-  //}
-  //delay(2000);
+  for(int current_id = 2; current_id < 6; current_id++)
+  {
+    dxl.writeControlTableItem(GOAL_POSITION, current_id, 2000);
+  }
+  delay(2000);
+
+    for(int current_id = 2; current_id < 6; current_id++)
+  {
+    dxl.writeControlTableItem(GOAL_POSITION, current_id, 000);
+  }
+
+  delay(2000);
+
 
 }
+
