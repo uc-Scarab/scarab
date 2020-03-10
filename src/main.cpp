@@ -115,8 +115,9 @@ void loop()
   uint8_t buffer[3];
   if(DEBUG_SERIAL.available() > 0){
        DEBUG_SERIAL.readBytes(buffer, 3);
-       DEBUG_SERIAL.println(int(buffer));
-       dxl.writeControlTableItem(MOVING_SPEED, buffer[0], INT_JOIN_BYTE(buffer[2], buffer[3]));
+       //DEBUG_SERIAL.println(int(buffer));
+       
+       dxl.writeControlTableItem(MOVING_SPEED, buffer[0], INT_JOIN_BYTE(buffer[1], buffer[2]));
   }
        
     //for(int current_id = 2; current_id < 6; current_id++)
@@ -167,4 +168,5 @@ void loop()
 
 
 }
+
 
