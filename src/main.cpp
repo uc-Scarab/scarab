@@ -69,7 +69,6 @@ void setup()
   // Get DYNAMIXEL information
   //Serial.begin(9600);
   
-
   for (int current_id = 2; current_id < 6; current_id++)
   {
     dxl.ping(current_id);
@@ -103,70 +102,28 @@ void setup()
 
 void loop()
 {
-
-  // int current_id = 3;
-  // put your main code here, to run repeatedly:
-
-  // Please refer to e-Manual(http://emanual.robotis.com/docs/en/parts/interface/dynamixel_shield/) for available range of value.
-  // Set Goal Position in RAW value
-  //  dxl.setGoalPosition(current_id, 0);
-  //  delay(1000);
-     //while (dxl.readControlTableItem(MOVING, current_id) == 1);
-  uint8_t buffer[3];
+  uint8_t buffer[4];
   if(DEBUG_SERIAL.available() > 0){
-       DEBUG_SERIAL.readBytes(buffer, 3);
-       //DEBUG_SERIAL.println(int(buffer));
-       
-       dxl.writeControlTableItem(MOVING_SPEED, buffer[0], INT_JOIN_BYTE(buffer[1], buffer[2]));
+       DEBUG_SERIAL.readBytes(buffer, 4);
+       DEBUG_SERIAL.println(int(buffer));
   }
-       
-    //for(int current_id = 2; current_id < 6; current_id++)
-    //{
-        //dxl.writeControlTableItem(MOVING_SPEED, current_id, incomingByte);
-    //}
-  //}
 
-
-  // // Print present position in raw value
-  // DEBUG_SERIAL.print("Present Position(raw) : ");
-  // DEBUG_SERIAL.println(dxl.getPresentPosition(current_id));
-  // delay(1000);
-
-  // // Set Goal Position in DEGREE value
-  // dxl.setGoalPosition(current_id, 4095);
-  // delay(1000);
-  // // Print present position in degree value
-  // DEBUG_SERIAL.print("Present Position(degree) : ");
-  // DEBUG_SERIAL.println(dxl.getPresentPosition(current_id, UNIT_DEGREE));
-  // delay(1000);
-
-  
-  //delay(500);
-  
-
-  
-
-  //for(int current_id = 2; current_id < 6; current_id++)
-  //{
-    //dxl.writeControlTableItem(MOVING_SPEED, current_id, 0);
-     //while (dxl.readControlTableItem(MOVING, current_id) == 1);
-    
-  //}
-  //delay(2000);
-  for(int current_id = 2; current_id < 6; current_id++)
-  {
-    dxl.writeControlTableItem(GOAL_POSITION, current_id, 2000);
+  if(buffer[1] == 1){
+    if((INT_JOIN_BYTE(buffer[2], buffer[3])) == 0){
+    dxl.torqueOff(buffer[0]);
+    delay(2000);
+    }
+    if((INT_JOIN_BYTE(buffer[2], buffer[3])) == 1){
+    dxl.torqueOn(buffer[0]);
+    delay(2000);
+    }
   }
+
+  if(buffer[1] == 2){
+    dxl.writeControlTableItem(MOVING_SPEED, buffer[0], INT_JOIN_BYTE(buffer[2], buffer[3]));
+  }
+  if(buffer[1] == 3){
+    dxl.writeControlTableItem(GOAL_POSITION, buffer[0], INT_JOIN_BYTE(buffer[2], buffer[3]));
   delay(2000);
-
-    for(int current_id = 2; current_id < 6; current_id++)
-  {
-    dxl.writeControlTableItem(GOAL_POSITION, current_id, 000);
   }
-
-  delay(2000);
-
-
 }
-
-
