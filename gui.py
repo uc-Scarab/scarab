@@ -5,12 +5,15 @@ class App:
     def __init__(self, master):
 
         self.master = master
+        width = 500
+        height = 300
+        xoffset = 0
+        yoffset = 0
 
-        self.dynamixel = tkinter.Scrollbar(master)
+        self.master.geometry('%dx%d%+d%+d' % (width, height, xoffset, yoffset))
+        self.dynamixel = tkinter.Scale(master, from_=0, to_=4095, orient="horizontal")
 
-        self.dynamixel2_entry = tkinter.Entry()
-
-        self.dynamixel1.grid(row=0, column=0)
+        self.dynamixel.grid(row=0, column=0)
 
 
 root = tkinter.Tk()
