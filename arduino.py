@@ -1,5 +1,10 @@
 import serial
-arduino = serial.Serial("\\\\.\\COM8")
+import platform
+if platform.system() == "Windows":
+    arduino = serial.Serial("\\\\.\\COM8")
+elif platform.system() == "Linux":
+    arduino = serial.Serial("/dev/ttyUSB0")
+
 arduino.baudrate = 115200
 
 while True:
@@ -11,7 +16,7 @@ while True:
     ba_dyn_id = bytearray(dyn_id)
     ba_com = bytearray(com)
     ba_val = bytearray(val)
-    
+
     ba_dyn_id.append(ba_com[0])
     ba_dyn_id.append(ba_val[1])
     ba_dyn_id.append(ba_val[0])
