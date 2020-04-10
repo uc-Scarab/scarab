@@ -22,9 +22,9 @@ def position(value):
 
 while True:
 
-    dyn_id = (int(input("Enter id:"))).to_bytes(1, byteorder="little")
+    dyn_id = (int(input("Enter id (2-5):"))).to_bytes(1, byteorder="little")
     com = (int(input("Enter command type (1 torque) (2 Speed) (3 Postion):"))).to_bytes(1, byteorder="little")
-    val = (int(input("Enter value:"))).to_bytes(2, byteorder="little")
+    val = (int(input("Enter value(speed 0-1023)(position 0-4095):"))).to_bytes(2, byteorder="little")
 
     ba_dyn_id = bytearray(dyn_id)
     ba_com = bytearray(com)
