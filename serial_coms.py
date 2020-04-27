@@ -1,5 +1,7 @@
 import serial
 import platform
+# import rospy
+# from dynamixel_gui.msg import DynamixelPosition
 if platform.system() == "Windows":
     arduino = serial.Serial("\\\\.\\COM8")
 elif platform.system() == "Linux":

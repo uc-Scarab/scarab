@@ -71,59 +71,72 @@ void setup()
   
   for (int current_id = 2; current_id < 6; current_id++)
   {
-    dxl.ping(current_id);
+    //dxl.ping(current_id);
 
     // Turn off torque when configuring items in EEPROM area
-    dxl.torqueOff(current_id);
+    //dxl.torqueOff(current_id);
     // dxl.writeControlTableItem(ID, current_id, 2);
     // dxl.writeControlTableItem(BAUD_RATE, current_id, 1);
     dxl.setOperatingMode(current_id, OP_POSITION);
-    dxl.torqueOn(current_id);
+    dxl.torqueOff(current_id);
   }
 
   //long position = 0; //random(0, 4095);
   long speed =  200;// random(0, 1023);
   // dxl.writeControlTableItem(GOAL_POSITION, current_id, );
 
-  for(int current_id = 2; current_id < 6; current_id++)
-  {
-    dxl.writeControlTableItem(MOVING_SPEED, current_id, speed);
-  }
-  for(int current_id = 2; current_id < 6; current_id++)
-  {
-    dxl.writeControlTableItem(GOAL_POSITION, current_id, 0);
-  }
-    //dxl.writeControlTableItem(MOVING_SPEED, 02, 0900);
+  //for(int current_id = 2; current_id < 6; current_id++)
+  //{
+    //dxl.writeControlTableItem(MOVING_SPEED, current_id, speed);
+  //}
+  //for(int current_id = 2; current_id < 6; current_id++)
+  //{
+    //dxl.writeControlTableItem(GOAL_POSITION, current_id, 0);
+  //}
+    ////dxl.writeControlTableItem(MOVING_SPEED, 02, 0900);
   
 } 
 
- 
+unsigned long interval = 100;
+unsigned long last_time = 0;
 
 
 void loop()
 {
-  uint8_t buffer[4];
-  if(DEBUG_SERIAL.available() > 0){
-       DEBUG_SERIAL.readBytes(buffer, 4);
-       DEBUG_SERIAL.println(int(buffer));
+
+  unsigned long timenow = millis();
+  if (timenow > (last_time + interval)){
+      last_time = timenow;
+    for(int i = 2; i < 6; i++){
+        uint16_t position = dxl.readControlTableItem(PRESENT_POSITION, i);
+        DEBUG_SERIAL.print("Motor " + String(i) + ": "  );  
+        DEBUG_SERIAL.println(position * 0.088);
+    }
+
   }
 
-  if(buffer[1] == 1){
-    if((INT_JOIN_BYTE(buffer[2], buffer[3])) == 0){
-    dxl.torqueOff(buffer[0]);
-    delay(2000);
-    }
-    if((INT_JOIN_BYTE(buffer[2], buffer[3])) == 1){
-    dxl.torqueOn(buffer[0]);
-    delay(2000);
-    }
-  }
+  //uint8_t buffer[4];
+  //if(DEBUG_SERIAL.available() > 0){
+       //DEBUG_SERIAL.readBytes(buffer, 4);
+       //DEBUG_SERIAL.println(int(buffer));
+  //}
 
-  if(buffer[1] == 2){
-    dxl.writeControlTableItem(MOVING_SPEED, buffer[0], INT_JOIN_BYTE(buffer[2], buffer[3]));
-  }
-  if(buffer[1] == 3){
-    dxl.writeControlTableItem(GOAL_POSITION, buffer[0], INT_JOIN_BYTE(buffer[2], buffer[3]));
-  delay(2000);
-  }
+  //if(buffer[1] == 1){
+    //if((INT_JOIN_BYTE(buffer[2], buffer[3])) == 0){
+    //dxl.torqueOff(buffer[0]);
+    //delay(2000);
+    //}
+    //if((INT_JOIN_BYTE(buffer[2], buffer[3])) == 1){
+    //dxl.torqueOn(buffer[0]);
+    //delay(2000);
+    //}
+  //}
+
+  //if(buffer[1] == 2){
+    //dxl.writeControlTableItem(MOVING_SPEED, buffer[0], INT_JOIN_BYTE(buffer[2], buffer[3]));
+  //}
+  //if(buffer[1] == 3){
+    //dxl.writeControlTableItem(GOAL_POSITION, buffer[0], INT_JOIN_BYTE(buffer[2], buffer[3]));
+  //delay(2000);
+  //}
 }
