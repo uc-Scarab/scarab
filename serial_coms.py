@@ -5,7 +5,7 @@ import platform
 if platform.system() == "Windows":
     arduino = serial.Serial("\\\\.\\COM8")
 elif platform.system() == "Linux":
-    arduino = serial.Serial("/dev/ttyUSB0")
+    arduino = serial.Serial("/dev/ttyUSB1")
 
 arduino.baudrate = 115200
 
