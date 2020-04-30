@@ -107,11 +107,28 @@ void loop()
   unsigned long timenow = millis();
   if (timenow > (last_time + interval)){
       last_time = timenow;
+      //uint16_t positions[4] ;
+      String positions;
+
     for(int i = 2; i < 6; i++){
         uint16_t position = dxl.readControlTableItem(PRESENT_POSITION, i);
-        DEBUG_SERIAL.print("Motor " + String(i) + ": ");  
-        DEBUG_SERIAL.println(position * 0.088);
+
+        if (i == 2){
+            positions += String(position);
+        } else {
+            positions += "," + String(position);
+        }
+        //positions[i - 2] = position;
+
+        //int bytes = DEBUG_SERIAL.write(positions);
+        //DEBUG_SERIAL.println(bytes);
+        
+
     }
+
+    DEBUG_SERIAL.println(positions);
+
+    //DEBUG_SERIAL.println(positions);
 
   }
   //unsigned long timenow = millis();
