@@ -1,163 +1,97 @@
-/*******************************************************************************
-* Copyright 2016 ROBOTIS CO., LTD.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*******************************************************************************/
 #include <Arduino.h>
 #include <Dynamixel2Arduino.h>
-
-// Please modify it to suit your hardware.
-#if defined(ARDUINO_AVR_UNO) || defined(ARDUINO_AVR_MEGA2560) // When using DynamixelShield
 #include <SoftwareSerial.h>
-    SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
-    #define DXL_SERIAL Serial
-    #define DEBUG_SERIAL soft_serial
-    const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
-#elif defined(ARDUINO_SAM_DUE) // When using DynamixelShield
-    #define DXL_SERIAL Serial
-    #define DEBUG_SERIAL SerialUSB
-    const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
-#elif defined(ARDUINO_SAM_ZERO) // When using DynamixelShield
-    #define DXL_SERIAL Serial1
-    #define DEBUG_SERIAL SerialUSB
-    const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
-#elif defined(ARDUINO_OpenCM904) // When using official ROBOTIS board with DXL circuit.
-    #define DXL_SERIAL Serial3       //OpenCM9.04 EXP Board's DXL port Serial. (Serial1 for the DXL port on the OpenCM 9.04 board)
-    #define DEBUG_SERIAL Serial
-    const uint8_t DXL_DIR_PIN = 22; //OpenCM9.04 EXP Board's DIR PIN. (28 for the DXL port on the OpenCM 9.04 board)
-#elif defined(ARDUINO_OpenCR) // When using official ROBOTIS board with DXL circuit.
-    // For OpenCR, there is a DXL Power Enable pin, so you must initialize and control it.
-    // Reference link : https://github.com/ROBOTIS-GIT/OpenCR/blob/master/arduino/opencr_arduino/opencr/libraries/DynamixelSDK/src/dynamixel_sdk/port_handler_arduino.cpp#L78
-    #define DXL_SERIAL Serial3
-    #define DEBUG_SERIAL Serial
-    const uint8_t DXL_DIR_PIN = 84; // OpenCR Board's DIR PIN.
-#else // Other boards when using DynamixelShield
-    #define DXL_SERIAL Serial1
-    #define DEBUG_SERIAL Serial
-    const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
-#endif
 
-// const uint8_t current_id = 1;
-const float DXL_PROTOCOL_VERSION = 1.0;
+SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
+#define DXL_SERIAL   Serial
+#define DEBUG_SERIAL soft_serial
+const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 
-int incomingByte = 0;
+#define UPPER_BYTE(b) (b >> 8) //defines byte structure 
+#define LOWER_BYTE(b) (b & 0xff)
+
+const uint16_t DXL_ID[4] = { 2, 3, 4, 5 }; // current leg ID range is 2-5 , convert this to array 2-5 DH
+const float DXL_PROTOCOL_VERSION = 1.0; //changed from 2.0 to 1.0 
 
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
-#define INT_JOIN_BYTE(u, l) (u << 8) | l
-void setup()
-{
+
+void setup() {
   // put your setup code here, to run once:
-
-  // Use UART port of DYNAMIXEL Shield to debug.
   DEBUG_SERIAL.begin(115200);
-
+  
   // Set Port baudrate to 57600bps. This has to match with DYNAMIXEL baudrate.
   dxl.begin(1000000);
-
   // Set Port Protocol Version. This has to match with DYNAMIXEL protocol version.
   dxl.setPortProtocolVersion(DXL_PROTOCOL_VERSION);
-  // Get DYNAMIXEL information
-  //Serial.begin(9600);
-  
-  for (int current_id = 2; current_id < 6; current_id++)
-  {
-    //dxl.ping(current_id);
 
-    // Turn off torque when configuring items in EEPROM area
-    //dxl.torqueOff(current_id);
-    // dxl.writeControlTableItem(ID, current_id, 2);
-    // dxl.writeControlTableItem(BAUD_RATE, current_id, 1);
-    dxl.setOperatingMode(current_id, OP_POSITION);
-    dxl.torqueOff(current_id);
+  // Turn off torque when configuring items in EEPROM area
+  //Need to turn the torque off for all dynamixels DH
+  for(int i = 2; i <= 5; i++){
+  dxl.torqueOff(i);
   }
 
-  //long position = 0; //random(0, 4095);
-  //long speed =  200;// random(0, 1023);
-  // dxl.writeControlTableItem(GOAL_POSITION, current_id, );
+ for(int j = 2; j <= 5; j++){
+  dxl.setOperatingMode(j, OP_POSITION);
+ }
+  //dxl.torqueOn(DXL_ID);
+}
 
-  //for(int current_id = 2; current_id < 6; current_id++)
-  //{
-    //dxl.writeControlTableItem(MOVING_SPEED, current_id, speed);
-  //}
-  //for(int current_id = 2; current_id < 6; current_id++)
-  //{
-    //dxl.writeControlTableItem(GOAL_POSITION, current_id, 0);
-  //}
-    ////dxl.writeControlTableItem(MOVING_SPEED, 02, 0900);
-  
-} 
+void transferData(){
+ uint8_t ID[4] = { 2, 3, 4, 5 }; //ID for 8 bit transfer
+ // uint16_t valueOfDyna = dxl.getPresentPosition(DXL_ID[0]);
+uint16_t valueOfDyna;
 
-unsigned long interval = 100;
-unsigned long last_time = 0;
+byte outBuffer[12];
+
+ valueOfDyna = dxl.getPresentPosition(ID[0]); 
+ outBuffer[0] = ID[0]; 
+ outBuffer[1] = LOWER_BYTE(valueOfDyna); 
+ outBuffer[2] = UPPER_BYTE(valueOfDyna); 
+
+ valueOfDyna = dxl.getPresentPosition(ID[1]); 
+ outBuffer[3] = ID[1]; 
+ outBuffer[4] = LOWER_BYTE(valueOfDyna); 
+ outBuffer[5] = UPPER_BYTE(valueOfDyna);
+
+ valueOfDyna = dxl.getPresentPosition(ID[2]); 
+ outBuffer[6] = ID[2]; 
+ outBuffer[7] = LOWER_BYTE(valueOfDyna); 
+ outBuffer[8] = UPPER_BYTE(valueOfDyna);
+
+ valueOfDyna = dxl.getPresentPosition(ID[3]); 
+ outBuffer[9] = ID[3]; 
+ outBuffer[10] = LOWER_BYTE(valueOfDyna); 
+ outBuffer[11] = UPPER_BYTE(valueOfDyna);
+
+DEBUG_SERIAL.write(outBuffer,12); 
+DEBUG_SERIAL.flush(); 
 
 
-void loop()
-{
+/*
+ byte outBuffer[3]; 
+ outBuffer[0] = ID[0]; 
+ outBuffer[1] = LOWER_BYTE(valueOfDyna); 
+ outBuffer[2] = UPPER_BYTE(valueOfDyna); 
 
-  unsigned long timenow = millis();
-  if (timenow > (last_time + interval)){
-      last_time = timenow;
-      //uint16_t positions[4] ;
-      String positions;
+DEBUG_SERIAL.write(outBuffer,3); 
+*/ 
+}
 
-    for(int i = 2; i < 6; i++){
-        uint16_t position = dxl.readControlTableItem(PRESENT_POSITION, i);
 
-        if (i == 2){
-            positions += String(position);
-        } else {
-            positions += "," + String(position);
-        }
-        //positions[i - 2] = position;
 
-        //int bytes = DEBUG_SERIAL.write(positions);
-        //DEBUG_SERIAL.println(bytes);
-        
 
-    }
-
-    DEBUG_SERIAL.println(positions);
-
-    //DEBUG_SERIAL.println(positions);
-
-  }
-  //unsigned long timenow = millis();
-  //if (timenow > (last_time + interval)){
-      //last_time = timenow;
+void loop() {
+  // put your main code here, to run repeatedly:
+  //DH gets position
+  //uint16_t position=dxl.getPresentPosition(DXL_ID);
  
-    //uint8_t buffer[4];
-    //if(DEBUG_SERIAL.available() > 0){
-        //DEBUG_SERIAL.readBytes(buffer, 4);
-        //DEBUG_SERIAL.println(int(buffer));
-    //}
-
-    //if(buffer[1] == 1){
-        //if((INT_JOIN_BYTE(buffer[2], buffer[3])) == 0){
-        //dxl.torqueOff(buffer[0]);
-        //delay(2000);
-        //}
-        //if((INT_JOIN_BYTE(buffer[2], buffer[3])) == 1){
-        //dxl.torqueOn(buffer[0]);
-        //delay(2000);
-        //}
-    //}
-
-    //if(buffer[1] == 2){
-        //dxl.writeControlTableItem(MOVING_SPEED, buffer[0], INT_JOIN_BYTE(buffer[2], buffer[3]));
-    //}
-    //if(buffer[1] == 3){
-        //dxl.writeControlTableItem(GOAL_POSITION, buffer[0], INT_JOIN_BYTE(buffer[2], buffer[3]));
-    //delay(2000);
-    //}
-  //}
+/*
+  for(int k = 2; k <= 5; k++){
+    uint16_t valueOfDyna = dxl.getPresentPosition(k);
+    DEBUG_SERIAL.print(String(valueOfDyna));
+    DEBUG_SERIAL.print(",");
+ } 
+ */ 
+transferData(); 
+ delay(333);
 }
