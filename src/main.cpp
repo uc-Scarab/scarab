@@ -43,6 +43,8 @@ uint16_t valueOfDyna;
 
 byte outBuffer[12];
 
+    
+
  valueOfDyna = dxl.getPresentPosition(ID[0]); 
  outBuffer[0] = ID[0]; 
  outBuffer[1] = LOWER_BYTE(valueOfDyna); 
@@ -62,6 +64,7 @@ byte outBuffer[12];
  outBuffer[9] = ID[3]; 
  outBuffer[10] = LOWER_BYTE(valueOfDyna); 
  outBuffer[11] = UPPER_BYTE(valueOfDyna);
+
 
 DEBUG_SERIAL.write(outBuffer,12); 
 DEBUG_SERIAL.flush(); 
