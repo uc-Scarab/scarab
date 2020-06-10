@@ -7,40 +7,37 @@
 #define UPPER_BYTE(b) (b >> 8) //defines byte structure 
 #define LOWER_BYTE(b) (b & 0xff)
 
-int time = 0;
-int start = 65336;
-int payload = 12;
+bool alt = true;
+//int payload = 12;
 void setup() {
   DEBUG_SERIAL.begin(115200);
 }
-int receiveData(uint8_t in_buffer[3]){
-        int payload = int(in_buffer[2]);
-        uint8_t data_buffer[payload];
-        DEBUG_SERIAL.readBytes(data_buffer, payload);
-        int value = int(INT_JOIN_BYTE(data_buffer[4], data_buffer[5])) + 1;
-        byte new_payload[payload + 3];
-        new_payload[0] = LOWER_BYTE(65336);
-        new_payload[1] = UPPER_BYTE(65336);
-        new_payload[2] = payload;
+//void receiveData(uint8_t in_buffer[3]){
+        //int payload = int(in_buffer[2]);
+        //uint8_t data_buffer[payload];
+        //DEBUG_SERIAL.readBytes(data_buffer, payload);
+        //int value = int(INT_JOIN_BYTE(data_buffer[0], data_buffer[1])) + 1;
+        //uint8_t new_payload[payload + 3];
+        //new_payload[0] = LOWER_BYTE(65336);
+        //new_payload[1] = UPPER_BYTE(65336);
+        //new_payload[2] = payload;
         
-        for(int i=3; i<(payload - 3); i+=3){
-            new_payload[i] = int(data_buffer[i]);
-            new_payload[i + 1] = LOWER_BYTE(value);
-            new_payload[i + 2] = UPPER_BYTE(value);
-        }
+        //for(int i=3; i<(payload - 3); i+=3){
+            //new_payload[i] = int(data_buffer[i]);
+            //new_payload[i + 1] = LOWER_BYTE(value);
+            //new_payload[i + 2] = UPPER_BYTE(value);
+        //}
 
-        if (int(data_buffer[payload - 1]) != 244){
-            DEBUG_SERIAL.flush();
-        }
+        //if (int(data_buffer[payload - 1]) != 244){
+            //DEBUG_SERIAL.flush();
+        //}
         
-
-        new_payload[payload - 1] = 244;
-
-        return(new_payload);
+        //new_payload[payload - 1] = 244;
+        //DEBUG_SERIAL.write(new_payload, sizeof(new_payload));   
     
-}
+//}
 
-void transferData(byte new_payload){
+//void transferData(byte new_payload){
  //uint8_t ID[15] = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }; //ID for 8 bit transfer
  // uint16_t valueOfDyna = nxl.getPresentPosition(DXL_ID[0]);
 //uint16_t valueOfDyna = time;
@@ -75,7 +72,6 @@ void transferData(byte new_payload){
  //outBuffer[14] = UPPER_BYTE(valueOfDyna);
  //outBuffer[15] = 244;
  
- DEBUG_SERIAL.write(new_payload);   
 
 //DEBUG_SERIAL.write(outBuffer,16); 
 //DEBUG_SERIAL.flush(); 
@@ -90,7 +86,7 @@ void transferData(byte new_payload){
 
 DEBUG_SERIAL.write(outBuffer,3); 
 */ 
-}
+
 
 
 
@@ -108,17 +104,33 @@ void loop() {
  } 
  */ 
 
-uint8_t in_buffer[3];
-DEBUG_SERIAL.read(in_buffer, 3);
-uint8_t check = INT_JOIN_BYTE(in_buffer[1], in_buffer[0]);
-if(int(check) == 65336){
-    byte new_stuff = recieveData(in_buffer);
-    transferData(new_stuff);
-   }
-}
+    uint8_t test[9];
+    if(alt){
 
-time += 1;
+    test[0] = highByte(60000);
+    test[1] = lowByte(60000);
+    test[2] = 4;
+    test[3] = 5;
+    test[4] = highByte(3000);
+    test[5] = lowByte(3000);
+    test[6] = 244;
+    DEBUG_SERIAL.write(test, 7);
+    }else {
+    test[0] = highByte(60000);
+    test[1] = lowByte(60000);
+    test[2] = 7;
+    test[3] = 5;
+    test[4] = highByte(2000);
+    test[5] = lowByte(2000);
+    test[6] = 6;
+    test[7] = highByte(5000);
+    test[8] = lowByte(5000);
+    test[9] = 244;
+    DEBUG_SERIAL.write(test, 10);
+
+    }
+   
+alt = !alt;
 delay(100);
 }
 
-}
