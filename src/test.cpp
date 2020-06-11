@@ -103,34 +103,62 @@ void loop() {
     DEBUG_SERIAL.print(",");
  } 
  */ 
+    uint8_t check_buffer[3];
+    DEBUG_SERIAL.readBytes(check_buffer, 3);
+    uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
 
-    uint8_t test[9];
-    if(alt){
-
-    test[0] = highByte(60000);
-    test[1] = lowByte(60000);
-    test[2] = 4;
-    test[3] = 5;
-    test[4] = highByte(3000);
-    test[5] = lowByte(3000);
-    test[6] = 244;
-    DEBUG_SERIAL.write(test, 7);
-    }else {
-    test[0] = highByte(60000);
-    test[1] = lowByte(60000);
-    test[2] = 7;
-    test[3] = 5;
-    test[4] = highByte(2000);
-    test[5] = lowByte(2000);
-    test[6] = 6;
-    test[7] = highByte(5000);
-    test[8] = lowByte(5000);
-    test[9] = 244;
-    DEBUG_SERIAL.write(test, 10);
-
+    if(check != 60000){
+        DEBUG_SERIAL.flush();
     }
+
+    payload = int(check_buffer[2]);
+    uint8_t message_buffer[payload];
+    DEBUG_SERIAL.readBytes(message_buffer, payload);
+
+
+    message = payload -1;
+    int ids[message/3];
+    int positions[message/3];
+
+    for(int i =0; i<message;i+=3){
+        
+    }
+
+
+    uint8_t trash[4];
+    DEBUG_SERIAL.readBytes(trash, 4);
+    //if(int(check) == 60000){
+        //DEBUG_SERIAL.println("check");
+    //}
+    
+
+    //uint8_t test[9];
+    //if(alt){
+
+    //test[0] = highByte(60000);
+    //test[1] = lowByte(60000);
+    //test[2] = 4;
+    //test[3] = 5;
+    //test[4] = highByte(3000);
+    //test[5] = lowByte(3000);
+    //test[6] = 244;
+    //DEBUG_SERIAL.write(test, 7);
+    //}else {
+    //test[0] = highByte(60000);
+    //test[1] = lowByte(60000);
+    //test[2] = 7;
+    //test[3] = 5;
+    //test[4] = highByte(2000);
+    //test[5] = lowByte(2000);
+    //test[6] = 6;
+    //test[7] = highByte(5000);
+    //test[8] = lowByte(5000);
+    //test[9] = 244;
+    //DEBUG_SERIAL.write(test, 10);
+
+    //}
    
-alt = !alt;
+//alt = !alt;
 delay(100);
 }
 
