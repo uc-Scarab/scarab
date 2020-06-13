@@ -7,10 +7,11 @@
 #define UPPER_BYTE(b) (b >> 8) //defines byte structure 
 #define LOWER_BYTE(b) (b & 0xff)
 
-bool alt = true;
+//bool alt = true;
 //int payload = 12;
 void setup() {
   DEBUG_SERIAL.begin(115200);
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 //void receiveData(uint8_t in_buffer[3]){
         //int payload = int(in_buffer[2]);
@@ -103,37 +104,66 @@ void loop() {
     DEBUG_SERIAL.print(",");
  } 
  */ 
+    
     uint8_t check_buffer[3];
     DEBUG_SERIAL.readBytes(check_buffer, 3);
-    uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
+    //uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
 
-    if(check != 60000){
-        DEBUG_SERIAL.flush();
-    }
+    //if(int(check) != 60000){
+        //DEBUG_SERIAL.flush();
+    //} else {
+    //digitalWrite(LED_BUILTIN, HIGH);
 
-    payload = int(check_buffer[2]);
-    uint8_t message_buffer[payload];
-    DEBUG_SERIAL.readBytes(message_buffer, payload);
+    //int payload = int(check_buffer[2]);
+    //uint8_t message_buffer[payload];
+    //DEBUG_SERIAL.readBytes(message_buffer, payload);
+    int payload = 4;
 
 
-    message = payload -1;
-    int ids[message/3];
-    int positions[message/3];
+    //int message = payload -1;
 
-    for(int i =0; i<message;i+=3){
+    uint8_t out[payload + 3];
+    out[0] = lowByte(60000);
+    out[1] = highByte(60000);
+    out[2] = payload;
+    out[3] = 2;
+    out[4] = lowByte(1000);
+    out[5] = highByte(1000);
+    out[6] = 244;
+    //int j = 3;
+
+    //for(int i =0; i<=message;i+=3){
+        //int id = int(message_buffer[i]);
+        //int position = int(INT_JOIN_BYTE(message_buffer[i + 2], message_buffer[i + 1])) + 1;
         
-    }
+        //out[j] = id;
+        //out[j + 1] = lowByte(position);
+        //out[j + 2] = highByte(position);
+
+    
+    //}
+
+    //if(message_buffer[payload - 1] != 244){
+        //DEBUG_SERIAL.flush();
+    //}
+
+    //out[payload + 2] = 244;
+    int test = payload + 3;
 
 
-    uint8_t trash[4];
-    DEBUG_SERIAL.readBytes(trash, 4);
+    DEBUG_SERIAL.write(out, test);
+            
+    
+    //}
+
+
     //if(int(check) == 60000){
         //DEBUG_SERIAL.println("check");
     //}
     
 
     //uint8_t test[9];
-    //if(alt){
+    
 
     //test[0] = highByte(60000);
     //test[1] = lowByte(60000);
@@ -160,5 +190,5 @@ void loop() {
    
 //alt = !alt;
 delay(100);
+//digitalWrite(LED_BUILTIN, LOW); 
 }
-
