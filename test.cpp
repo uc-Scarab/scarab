@@ -105,32 +105,38 @@ void loop() {
  } 
  */ 
     
-    uint8_t check_buffer[3];
+    uint8_t check_buffer[2];
     DEBUG_SERIAL.readBytes(check_buffer, 3);
-    //uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
+    uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
+
+    uint8_t out_test[2];
+
+    out_test[0] = lowByte(check);
+    out_test[1] = highByte(check);
+
+    DEBUG_SERIAL.write(out_test, 2);
 
     //if(int(check) != 60000){
         //DEBUG_SERIAL.flush();
     //} else {
     //digitalWrite(LED_BUILTIN, HIGH);
 
-    //int payload = int(check_buffer[2]);
-    //uint8_t message_buffer[payload];
-    //DEBUG_SERIAL.readBytes(message_buffer, payload);
-    int payload = 4;
+    //int test_payload = int(check_buffer[2]);
+    //uint8_t message_buffer[test_payload];
+    //DEBUG_SERIAL.readBytes(message_buffer, test_payload);
 
+    //int payload = 4;
+    ////int message = payload -1;
 
-    //int message = payload -1;
-
-    uint8_t out[payload + 3];
-    out[0] = lowByte(60000);
-    out[1] = highByte(60000);
-    out[2] = payload;
-    out[3] = 2;
-    out[4] = lowByte(1000);
-    out[5] = highByte(1000);
-    out[6] = 244;
-    //int j = 3;
+    //uint8_t out[payload + 3];
+    //out[0] = lowByte(60000);
+    //out[1] = highByte(60000);
+    //out[2] = payload;
+    //out[3] = 2;
+    //out[4] = lowByte(1000);
+    //out[5] = highByte(1000);
+    //out[6] = 244;
+    ////int j = 3;
 
     //for(int i =0; i<=message;i+=3){
         //int id = int(message_buffer[i]);
@@ -148,10 +154,10 @@ void loop() {
     //}
 
     //out[payload + 2] = 244;
-    int test = payload + 3;
+    //int test = payload + 3;
 
 
-    DEBUG_SERIAL.write(out, test);
+    //DEBUG_SERIAL.write(out, test);
             
     
     //}
