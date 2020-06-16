@@ -19,7 +19,7 @@ void readBytes(){
         uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
         if(int(check) != 60000){
             DEBUG_SERIAL.flush();
-            digitalWrite(LED_BUILTIN, HIGH);
+            digitalWrite(LED_BUILTIN, LOW);
         } else {
             digitalWrite(LED_BUILTIN, HIGH);
             int payload = int(check_buffer[2]);
