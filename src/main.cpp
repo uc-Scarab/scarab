@@ -101,18 +101,20 @@ DEBUG_SERIAL.write(outBuffer,3);
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  //DH gets position
+    dxl.writeControlTableItem(GOAL_POSITION, 5, 0);
+    delay(1000);
+    dxl.writeControlTableItem(GOAL_POSITION, 5, 1000);
+    delay(1000);
   //uint16_t position=dxl.getPresentPosition(DXL_ID);
  
-/*
-  for(int k = 2; k <= 5; k++){
-    uint16_t valueOfDyna = dxl.getPresentPosition(k);
-    DEBUG_SERIAL.print(String(valueOfDyna));
-    DEBUG_SERIAL.print(",");
- } 
- */ 
-transferData(); 
+
+  //for(int k = 2; k <= 5; k++){
+    //uint16_t valueOfDyna = dxl.getPresentPosition(k);
+    //DEBUG_SERIAL.print(String(valueOfDyna));
+    //DEBUG_SERIAL.print(",");
+ //} 
+  
+//transferData(); 
 //recieveData();
- delay(100);
+ //delay(100);
 }
