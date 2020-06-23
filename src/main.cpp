@@ -1,10 +1,11 @@
 #include <Arduino.h>
 #include <Dynamixel2Arduino.h>
 #include <SoftwareSerial.h>
-
+#ifndef skipSoftSerial
 SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
-#define DXL_SERIAL   Serial
-#define DEBUG_SERIAL soft_serial
+#endif
+//#define DXL_SERIAL   Serial1
+//#define DEBUG_SERIAL soft_serial
 const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 #define INT_JOIN_BYTE(u, l) (u << 8) | l
 
@@ -51,61 +52,51 @@ void transferData(){
   outBuffer[5] = highByte(valueOfDyna);
   outBuffer[6] = 244;
 
-  //DEBUG_SERIAL.println("test");
- 
   DEBUG_SERIAL.write(outBuffer, 7); 
 
 
-/*
- byte outBuffer[3]; 
- outBuffer[0] = ID[0]; 
- outBuffer[1] = LOWER_BYTE(valueOfDyna); 
- outBuffer[2] = UPPER_BYTE(valueOfDyna); 
-
-DEBUG_SERIAL.write(outBuffer,3); 
-*/ 
 }
 
-//void recieveData(){
-    //if(DEBUG_SERIAL.available() >= 3){
-        //uint8_t check_buffer[3];
-        //DEBUG_SERIAL.readBytes(check_buffer, 3);
-        //uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
-        //if(int(check) != 60000){
-            //DEBUG_SERIAL.flush();
-            //digitalWrite(LED_BUILTIN, LOW);
-        //} else {
-            //digitalWrite(LED_BUILTIN, HIGH);
-            //int payload = int(check_buffer[2]);
-            //uint8_t message_buffer[payload];
-            //DEBUG_SERIAL.readBytes(message_buffer, payload);
+void recieveData(){
+    if(DEBUG_SERIAL.available() >= 3){
+        uint8_t check_buffer[3];
+        DEBUG_SERIAL.readBytes(check_buffer, 3);
+        uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
+        if(int(check) != 60000){
+            DEBUG_SERIAL.flush();
+            digitalWrite(LED_BUILTIN, LOW);
+        } else {
+            digitalWrite(LED_BUILTIN, HIGH);
+            int payload = int(check_buffer[2]);
+            uint8_t message_buffer[payload];
+            DEBUG_SERIAL.readBytes(message_buffer, payload);
 
-            //for(int i=0;i<payload -3;i+=3){
-                //int id = int(message_buffer[i]);
-                //uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 2], message_buffer[i + 1]);
-                //dxl.writeControlTableItem(GOAL_POSITION, id ,int(full_byte));
+            for(int i=0;i<payload -3;i+=3){
+                int id = int(message_buffer[i]);
+                uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 2], message_buffer[i + 1]);
+                dxl.writeControlTableItem(GOAL_POSITION, id ,int(full_byte));
 
 
-                //}
+                }
 
-                    ////if (message_buffer[payload - 1] != 244){
-                    ////DEBUG_SERIAL.flush();
-                    ////}
+                    //if (message_buffer[payload - 1] != 244){
+                    //DEBUG_SERIAL.flush();
+                    //}
  
-        //}
-    //}
-//}
+        }
+    }
+}
 
 
 
 
 
 void loop() {
-    dxl.writeControlTableItem(GOAL_POSITION, 5, 0);
-    delay(1000);
-    dxl.writeControlTableItem(GOAL_POSITION, 5, 1000);
-    delay(1000);
-  //uint16_t position=dxl.getPresentPosition(DXL_ID);
+    //dxl.writeControlTableItem(GOAL_POSITION, 5, 0);
+    //delay(1000);
+    //dxl.writeControlTableItem(GOAL_POSITION, 5, 1000);
+    //delay(1000);
+  ////uint16_t position=dxl.getPresentPosition(DXL_ID);
  
 
   //for(int k = 2; k <= 5; k++){
@@ -114,7 +105,7 @@ void loop() {
     //DEBUG_SERIAL.print(",");
  //} 
   
-//transferData(); 
+transferData(); 
+delay(100);
 //recieveData();
- //delay(100);
 }
