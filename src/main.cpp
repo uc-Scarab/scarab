@@ -13,7 +13,7 @@ const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 #define LOWER_BYTE(b) (b & 0xff)
 
 const uint16_t DXL_ID[4] = { 2, 3, 4, 5 }; // current leg ID range is 2-5 , convert this to array 2-5 DH
-const float DXL_PROTOCOL_VERSION = 1.0; //changed from 2.0 to 1.0 
+const float DXL_PROTOCOL_VERSION = 2.0; //changed from 2.0 to 1.0 
 
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 
@@ -39,7 +39,8 @@ void setup() {
 }
 
 void transferData(){
-  uint8_t id = 5;
+  for(int i=0; i<5;i++){
+  uint8_t id = i;
   uint16_t valueOfDyna = dxl.readControlTableItem(PRESENT_POSITION, id);
   //uint16_t valueOfDyna = 1000;
   uint8_t outBuffer[7];   
@@ -47,13 +48,13 @@ void transferData(){
   outBuffer[0] = lowByte(60000);
   outBuffer[1] = highByte(60000);
   outBuffer[2] = 4;
-  outBuffer[3] = 5;
+  outBuffer[3] = i;
   outBuffer[4] = lowByte(valueOfDyna);
   outBuffer[5] = highByte(valueOfDyna);
   outBuffer[6] = 244;
 
   DEBUG_SERIAL.write(outBuffer, 7); 
-
+  }
 
 }
 

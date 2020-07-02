@@ -1,200 +1,112 @@
 #include <Arduino.h>
 #include <Dynamixel2Arduino.h>
-
-#define DEBUG_SERIAL Serial
+#include <SoftwareSerial.h>
+#ifndef skipSoftSerial
+SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
+#endif
+//#define DXL_SERIAL   Serial1
+//#define DEBUG_SERIAL soft_serial
+const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 #define INT_JOIN_BYTE(u, l) (u << 8) | l
 
 #define UPPER_BYTE(b) (b >> 8) //defines byte structure 
 #define LOWER_BYTE(b) (b & 0xff)
 
-//bool alt = true;
-//int payload = 12;
+const uint16_t DXL_ID[4] = { 2, 3, 4, 5 }; // current leg ID range is 2-5 , convert this to array 2-5 DH
+const float DXL_PROTOCOL_VERSION = 1.0; //changed from 2.0 to 1.0 
+
+Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
+
 void setup() {
+  // put your setup code here, to run once:
   DEBUG_SERIAL.begin(115200);
-  pinMode(LED_BUILTIN, OUTPUT);
+  
+  // Set Port baudrate to 57600bps. This has to match with DYNAMIXEL baudrate.
+  dxl.begin(1000000);
+  // Set Port Protocol Version. This has to match with DYNAMIXEL protocol version.
+  dxl.setPortProtocolVersion(DXL_PROTOCOL_VERSION);
+
+  // Turn off torque when configuring items in EEPROM area
+  //Need to turn the torque off for all dynamixels DH
+  for(int i = 2; i <= 5; i++){
+  dxl.torqueOff(i);
+  }
+
+ for(int j = 2; j <= 5; j++){
+  dxl.setOperatingMode(j, OP_POSITION);
+ }
+  //dxl.torqueOn(DXL_ID);
 }
-//void receiveData(uint8_t in_buffer[3]){
-        //int payload = int(in_buffer[2]);
-        //uint8_t data_buffer[payload];
-        //DEBUG_SERIAL.readBytes(data_buffer, payload);
-        //int value = int(INT_JOIN_BYTE(data_buffer[0], data_buffer[1])) + 1;
-        //uint8_t new_payload[payload + 3];
-        //new_payload[0] = LOWER_BYTE(65336);
-        //new_payload[1] = UPPER_BYTE(65336);
-        //new_payload[2] = payload;
-        
-        //for(int i=3; i<(payload - 3); i+=3){
-            //new_payload[i] = int(data_buffer[i]);
-            //new_payload[i + 1] = LOWER_BYTE(value);
-            //new_payload[i + 2] = UPPER_BYTE(value);
-        //}
 
-        //if (int(data_buffer[payload - 1]) != 244){
-            //DEBUG_SERIAL.flush();
-        //}
-        
-        //new_payload[payload - 1] = 244;
-        //DEBUG_SERIAL.write(new_payload, sizeof(new_payload));   
-    
-//}
+void transferData(){
+  for(int i=1; i<5; i++){
+  uint8_t id = i;
+  uint16_t valueOfDyna = dxl.readControlTableItem(PRESENT_POSITION, id);
+  //uint16_t valueOfDyna = 1000;
+  uint8_t outBuffer[7];   
 
-//void transferData(byte new_payload){
- //uint8_t ID[15] = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 }; //ID for 8 bit transfer
- // uint16_t valueOfDyna = nxl.getPresentPosition(DXL_ID[0]);
-//uint16_t valueOfDyna = time;
+  outBuffer[0] = lowByte(60000);
+  outBuffer[1] = highByte(60000);
+  outBuffer[2] = 4;
+  outBuffer[3] = i;
+  outBuffer[4] = lowByte(valueOfDyna);
+  outBuffer[5] = highByte(valueOfDyna);
+  outBuffer[6] = 244;
 
-//byte outBuffer[sizeof(new_payload)];
-//outBuffer[0] = LOWER_BYTE(new_payload[0]);
-//outBuffer[1] = UPPER_BYTE(new_payload[0]);
-//outBuffer[2] = new_payload[1];
-//for(int i=3;int i<payload.length - 3; i+=3){
-    //outBuffer[i] = new_payload[i];
-    //outBuffer[i + 1] = LOWER_BYTE(new_payload[i + 1]);
-    //outBuffer[i + 2] = UPPER_BYTE(new_payload[i + 1]);
+  DEBUG_SERIAL.write(outBuffer, 7); 
+  }
 
-//}
- //outBuffer[0] = LOWER_BYTE(start);    
- //outBuffer[1] = UPPER_BYTE(start);
- //outBuffer[2] = payload;
- //outBuffer[3] = ID[0]; 
- //outBuffer[4] = LOWER_BYTE(valueOfDyna); 
- //outBuffer[5] = UPPER_BYTE(valueOfDyna); 
+}
 
- //outBuffer[6] = ID[1]; 
- //outBuffer[7] = LOWER_BYTE(valueOfDyna); 
- //outBuffer[8] = UPPER_BYTE(valueOfDyna);
+void recieveData(){
+    if(DEBUG_SERIAL.available() >= 3){
+        uint8_t check_buffer[3];
+        DEBUG_SERIAL.readBytes(check_buffer, 3);
+        uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
+        if(int(check) != 60000){
+            DEBUG_SERIAL.flush();
+            digitalWrite(LED_BUILTIN, LOW);
+        } else {
+            digitalWrite(LED_BUILTIN, HIGH);
+            int payload = int(check_buffer[2]);
+            uint8_t message_buffer[payload];
+            DEBUG_SERIAL.readBytes(message_buffer, payload);
 
- //outBuffer[9] = ID[2]; 
- //outBuffer[10] = LOWER_BYTE(valueOfDyna); 
- //outBuffer[11] = UPPER_BYTE(valueOfDyna);
+            for(int i=0;i<payload -3;i+=3){
+                int id = int(message_buffer[i]);
+                uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 2], message_buffer[i + 1]);
+                dxl.writeControlTableItem(GOAL_POSITION, id ,int(full_byte));
 
- //outBuffer[12] = ID[3]; 
- //outBuffer[13] = LOWER_BYTE(valueOfDyna); 
- //outBuffer[14] = UPPER_BYTE(valueOfDyna);
- //outBuffer[15] = 244;
+
+                }
+
+                    //if (message_buffer[payload - 1] != 244){
+                    //DEBUG_SERIAL.flush();
+                    //}
  
-
-//DEBUG_SERIAL.write(outBuffer,16); 
-//DEBUG_SERIAL.flush(); 
-
-
-
-/*
- byte outBuffer[3]; 
- outBuffer[0] = ID[0]; 
- outBuffer[1] = LOWER_BYTE(valueOfDyna); 
- outBuffer[2] = UPPER_BYTE(valueOfDyna); 
-
-DEBUG_SERIAL.write(outBuffer,3); 
-*/ 
+        }
+    }
+}
 
 
 
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  //DH gets position
-  //uint16_t position=dxl.getPresentPosition(DXL_ID);
+    //dxl.writeControlTableItem(GOAL_POSITION, 5, 0);
+    //delay(1000);
+    //dxl.writeControlTableItem(GOAL_POSITION, 5, 1000);
+    //delay(1000);
+  ////uint16_t position=dxl.getPresentPosition(DXL_ID);
  
-/*
-  for(int k = 2; k <= 5; k++){
-    uint16_t valueOfDyna = dxl.getPresentPosition(k);
-    DEBUG_SERIAL.print(String(valueOfDyna));
-    DEBUG_SERIAL.print(",");
- } 
- */ 
-    
-    uint8_t check_buffer[2];
-    DEBUG_SERIAL.readBytes(check_buffer, 3);
-    uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
 
-    uint8_t out_test[2];
-
-    out_test[0] = lowByte(check);
-    out_test[1] = highByte(check);
-
-    DEBUG_SERIAL.write(out_test, 2);
-
-    //if(int(check) != 60000){
-        //DEBUG_SERIAL.flush();
-    //} else {
-    //digitalWrite(LED_BUILTIN, HIGH);
-
-    //int test_payload = int(check_buffer[2]);
-    //uint8_t message_buffer[test_payload];
-    //DEBUG_SERIAL.readBytes(message_buffer, test_payload);
-
-    //int payload = 4;
-    ////int message = payload -1;
-
-    //uint8_t out[payload + 3];
-    //out[0] = lowByte(60000);
-    //out[1] = highByte(60000);
-    //out[2] = payload;
-    //out[3] = 2;
-    //out[4] = lowByte(1000);
-    //out[5] = highByte(1000);
-    //out[6] = 244;
-    ////int j = 3;
-
-    //for(int i =0; i<=message;i+=3){
-        //int id = int(message_buffer[i]);
-        //int position = int(INT_JOIN_BYTE(message_buffer[i + 2], message_buffer[i + 1])) + 1;
-        
-        //out[j] = id;
-        //out[j + 1] = lowByte(position);
-        //out[j + 2] = highByte(position);
-
-    
-    //}
-
-    //if(message_buffer[payload - 1] != 244){
-        //DEBUG_SERIAL.flush();
-    //}
-
-    //out[payload + 2] = 244;
-    //int test = payload + 3;
-
-
-    //DEBUG_SERIAL.write(out, test);
-            
-    
-    //}
-
-
-    //if(int(check) == 60000){
-        //DEBUG_SERIAL.println("check");
-    //}
-    
-
-    //uint8_t test[9];
-    
-
-    //test[0] = highByte(60000);
-    //test[1] = lowByte(60000);
-    //test[2] = 4;
-    //test[3] = 5;
-    //test[4] = highByte(3000);
-    //test[5] = lowByte(3000);
-    //test[6] = 244;
-    //DEBUG_SERIAL.write(test, 7);
-    //}else {
-    //test[0] = highByte(60000);
-    //test[1] = lowByte(60000);
-    //test[2] = 7;
-    //test[3] = 5;
-    //test[4] = highByte(2000);
-    //test[5] = lowByte(2000);
-    //test[6] = 6;
-    //test[7] = highByte(5000);
-    //test[8] = lowByte(5000);
-    //test[9] = 244;
-    //DEBUG_SERIAL.write(test, 10);
-
-    //}
-   
-//alt = !alt;
+  //for(int k = 2; k <= 5; k++){
+    //uint16_t valueOfDyna = dxl.getPresentPosition(k);
+    //DEBUG_SERIAL.print(String(valueOfDyna));
+    //DEBUG_SERIAL.print(",");
+ //} 
+  
+transferData(); 
 delay(100);
-//digitalWrite(LED_BUILTIN, LOW); 
+//recieveData();
 }

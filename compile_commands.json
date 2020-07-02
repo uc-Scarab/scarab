@@ -1,0 +1,312 @@
+[
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/AudioStream.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/AudioStream.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/AudioStream.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/Blink.cc.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/Blink.cc",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/Blink.cc"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/DMAChannel.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/DMAChannel.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/DMAChannel.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/EventResponder.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/EventResponder.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/EventResponder.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/HardwareSerial.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/HardwareSerial1.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial1.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial1.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/HardwareSerial2.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial2.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial2.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/HardwareSerial3.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial3.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial3.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/HardwareSerial4.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial4.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial4.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/HardwareSerial5.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial5.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial5.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/HardwareSerial6.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial6.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial6.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/HardwareSerial7.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial7.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial7.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/HardwareSerial8.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial8.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/HardwareSerial8.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/IPAddress.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/IPAddress.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/IPAddress.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/IntervalTimer.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/IntervalTimer.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/IntervalTimer.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/Print.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/Print.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/Print.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/Stream.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/Stream.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/Stream.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/Tone.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/Tone.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/Tone.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/WMath.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/WMath.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/WMath.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/WString.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/WString.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/WString.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/analog.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/analog.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/analog.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/bootdata.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/bootdata.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/bootdata.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/clockspeed.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/clockspeed.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/clockspeed.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/debugprintf.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/debugprintf.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/debugprintf.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/delay.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/delay.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/delay.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/digital.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/digital.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/digital.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/eeprom.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/eeprom.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/eeprom.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/interrupt.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/interrupt.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/interrupt.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/keylayouts.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/keylayouts.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/keylayouts.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/main.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/main.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/main.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-as -x assembler-with-cpp -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -o .pio/build/teensy40/FrameworkArduino/memcpy-armv7m.S.o /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/memcpy-armv7m.S",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/memcpy-armv7m.S"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-as -x assembler-with-cpp -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -o .pio/build/teensy40/FrameworkArduino/memset.S.o /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/memset.S",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/memset.S"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/new.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/new.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/new.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/nonstd.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/nonstd.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/nonstd.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/pwm.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/pwm.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/pwm.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/rtc.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/rtc.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/rtc.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/startup.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/startup.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/startup.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/tempmon.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/tempmon.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/tempmon.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/usb_audio.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_audio.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_audio.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb_desc.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_desc.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_desc.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/usb_flightsim.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_flightsim.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_flightsim.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/usb_inst.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_inst.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_inst.cpp"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb_joystick.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_joystick.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_joystick.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb_keyboard.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_keyboard.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_keyboard.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb_midi.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_midi.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_midi.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb_mouse.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_mouse.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_mouse.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb_rawhid.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_rawhid.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_rawhid.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb_seremu.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_seremu.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_seremu.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb_serial.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_serial.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_serial.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb_serial2.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_serial2.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_serial2.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb_serial3.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_serial3.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_serial3.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc -o .pio/build/teensy40/FrameworkArduino/usb_touch.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_touch.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/usb_touch.c"
+    },
+    {
+        "command": "/home/charles/.platformio/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-g++ -o .pio/build/teensy40/FrameworkArduino/yield.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/yield.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4/yield.cpp"
+    },
+    {
+        "command": "arm-none-eabi-g++ -o .pio/build/teensy40/libcce/Dynamixel2Arduino_ID6467/Dynamixel2Arduino.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 .pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/Dynamixel2Arduino.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/devel/teensy_scarab/.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/Dynamixel2Arduino.cpp"
+    },
+    {
+        "command": "arm-none-eabi-g++ -o .pio/build/teensy40/libcce/Dynamixel2Arduino_ID6467/actuator.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 .pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/actuator.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/devel/teensy_scarab/.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/actuator.cpp"
+    },
+    {
+        "command": "arm-none-eabi-gcc -o .pio/build/teensy40/libcce/Dynamixel2Arduino_ID6467/dxl_c/protocol.c.o -c -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 .pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/dxl_c/protocol.c",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/devel/teensy_scarab/.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/dxl_c/protocol.c"
+    },
+    {
+        "command": "arm-none-eabi-g++ -o .pio/build/teensy40/libcce/Dynamixel2Arduino_ID6467/utility/master.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 .pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/utility/master.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/devel/teensy_scarab/.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/utility/master.cpp"
+    },
+    {
+        "command": "arm-none-eabi-g++ -o .pio/build/teensy40/libcce/Dynamixel2Arduino_ID6467/utility/port_handler.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 .pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/utility/port_handler.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/devel/teensy_scarab/.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/utility/port_handler.cpp"
+    },
+    {
+        "command": "arm-none-eabi-g++ -o .pio/build/teensy40/libcce/Dynamixel2Arduino_ID6467/utility/slave.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 .pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/utility/slave.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/devel/teensy_scarab/.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src/utility/slave.cpp"
+    },
+    {
+        "command": "arm-none-eabi-g++ -o .pio/build/teensy40/lib3a8/SoftwareSerial/SoftwareSerial.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -I/home/charles/.platformio/packages/framework-arduinoteensy/libraries/SoftwareSerial -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 /home/charles/.platformio/packages/framework-arduinoteensy/libraries/SoftwareSerial/SoftwareSerial.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/.platformio/packages/framework-arduinoteensy/libraries/SoftwareSerial/SoftwareSerial.cpp"
+    },
+    {
+        "command": "arm-none-eabi-g++ -o .pio/build/teensy40/src/main.cpp.o -c -fno-exceptions -felide-constructors -fno-rtti -std=gnu++14 -Wno-error=narrowing -fpermissive -Wall -ffunction-sections -fdata-sections -mthumb -mcpu=cortex-m7 -nostdlib -fsingle-precision-constant -mfloat-abi=hard -mfpu=fpv5-d16 -O2 -DPLATFORMIO=40201 -D__IMXRT1062__ -DARDUINO_TEENSY40 -DDXL_SERIAL=Serial1 -DDEBUG_SERIAL=Serial -DskipSoftSerial -DUSB_SERIAL -DARDUINO=10805 -DTEENSYDUINO=152 -DCORE_TEENSY -DF_CPU=600000000 -DLAYOUT_US_ENGLISH -Iinclude -Isrc -I/home/charles/.platformio/packages/framework-arduinoteensy/libraries/SoftwareSerial -I.pio/libdeps/teensy40/Dynamixel2Arduino_ID6467/src -I/home/charles/.platformio/packages/framework-arduinoteensy/cores/teensy4 src/main.cpp",
+        "directory": "/home/charles/devel/teensy_scarab",
+        "file": "/home/charles/devel/teensy_scarab/src/main.cpp"
+    }
+]
