@@ -28,12 +28,13 @@ void setup() {
 
   // Turn off torque when configuring items in EEPROM area
   //Need to turn the torque off for all dynamixels DH
-  for(int i = 2; i <= 5; i++){
-  dxl.torqueOff(i);
-  }
+  // for(int i = 1; i <= 4; i++){
+  // dxl.torqueOff(i);
+  // }
 
- for(int j = 2; j <= 5; j++){
-  dxl.setOperatingMode(j, OP_POSITION);
+ for(int j = 1; j <= 4; j++){
+  // dxl.setOperatingMode(j, OP_POSITION);
+  dxl.writeControlTableItem(24, j, 1);
  }
   //dxl.torqueOn(DXL_ID);
 }
@@ -106,7 +107,11 @@ void loop() {
     //DEBUG_SERIAL.print(",");
  //} 
   
-transferData(); 
-delay(100);
+// transferData(); 
+// delay(100);
 //recieveData();
+ for(int j = 1; j <= 4; j++){
+  // dxl.setOperatingMode(j, OP_POSITION);
+  dxl.writeControlTableItem(24, j, 1);
+ }
 }
