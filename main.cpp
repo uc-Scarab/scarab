@@ -19,12 +19,18 @@
 */
 
 #include <Dynamixel2Arduino.h>
+#include <SoftwareSerial.h>
 
-// Please modify it to suit your hardware.
+// Please modify it to suit your hardware.s
+#define INT_JOIN_BYTE(u, l) (u << 8) | l
+
+#define UPPER_BYTE(b) (b >> 8) //defines byte structure 
+#define LOWER_BYTE(b) (b & 0xff)
+
 #if defined(ARDUINO_AVR_UNO) || defined(ARDUINO_AVR_MEGA2560) // When using DynamixelShield
   #include <SoftwareSerial.h>
-  //SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
-  #define DXL_SERIAL   Serial1
+  SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
+  #define DXL_SERIAL   Serial
   #define DEBUG_SERIAL soft_serial
   const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 #elif defined(ARDUINO_SAM_DUE) // When using DynamixelShield
@@ -56,22 +62,65 @@ const uint8_t DXL_ID = 1;
 const float DXL_PROTOCOL_VERSION = 1.0;
 
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
+void transferData(){
+  for(int i=0; i<5;i++){
+  uint8_t id = i;
+  uint16_t valueOfDyna = dxl.readControlTableItem(PRESENT_POSITION, id);
+  //uint16_t valueOfDyna = 1000;
+  uint8_t outBuffer[7];   
 
+  outBuffer[0] = lowByte(60000);
+  outBuffer[1] = highByte(60000);
+  outBuffer[2] = 4;
+  outBuffer[3] = i;
+  outBuffer[4] = lowByte(valueOfDyna);
+  outBuffer[5] = highByte(valueOfDyna);
+  outBuffer[6] = 244;
+
+  DEBUG_SERIAL.write(outBuffer, 7); 
+  }
+
+}
+
+void recieveData(){
+    if(DEBUG_SERIAL.available() >= 3){
+        uint8_t check_buffer[3];
+        DEBUG_SERIAL.readBytes(check_buffer, 3);
+        uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
+        if(int(check) != 60000){
+            DEBUG_SERIAL.flush();
+            digitalWrite(LED_BUILTIN, LOW);
+        } else {
+            digitalWrite(LED_BUILTIN, HIGH);
+            int payload = int(check_buffer[2]);
+            uint8_t message_buffer[payload];
+            DEBUG_SERIAL.readBytes(message_buffer, payload);
+
+            for(int i=0;i<payload -3;i+=3){
+                int id = int(message_buffer[i]);
+                uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 2], message_buffer[i + 1]);
+                dxl.writeControlTableItem(GOAL_POSITION, id ,int(full_byte));
+
+
+                }
+
+                    //if (message_buffer[payload - 1] != 244){
+                    //DEBUG_SERIAL.flush();
+                    //}
+ 
+        }
+    }
+}
 void setup() {
   // put your setup code here, to run once:
-  DEBUG_SERIAL.begin(115200);
+
   // Set Port baudrate to 57600bps. This has to match with DYNAMIXEL baudrate.
   dxl.begin(1000000);
+  DEBUG_SERIAL.begin(115200);
   // Set Port Protocol Version. This has to match with DYNAMIXEL protocol version.
   dxl.setPortProtocolVersion(DXL_PROTOCOL_VERSION);
   // Get DYNAMIXEL information
   dxl.ping(DXL_ID);
-}
-
-void blink(){
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(1000);
-  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void loop() {
@@ -79,15 +128,10 @@ void loop() {
 
   // Turn on the output Torque.
   dxl.torqueOn(DXL_ID);
-  // DEBUG_SERIAL(dxl.getLastLibErrCode());
-  DXLLibErrorCode_t test = dxl.getLastStatusPacketError();
-  DEBUG_SERIAL.println(test);
-
-
   delay(2000);
-  blink();
   
   // Turn off the output Torque.
-  // dxl.torqueOff(DXL_ID);
-  // delay(2000);
+  dxl.torqueOff(DXL_ID);
+  delay(2000);
 }
+
