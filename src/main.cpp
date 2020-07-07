@@ -13,7 +13,7 @@ SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
 // #endif
 //#define DXL_SERIAL   Serial1
 //#define DEBUG_SERIAL soft_serial
-const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
+const uint8_t DXL_DIR_PIN = 9; // DYNAMIXEL Shield DIR PIN
 #define INT_JOIN_BYTE(u, l) (u << 8) | l
 
 #define UPPER_BYTE(b) (b >> 8) //defines byte structure 
@@ -43,8 +43,8 @@ void setup() {
 
  for(int j = 1; j <= 4; j++){
   dxl.setOperatingMode(j, OP_POSITION);
-  // dxl.writeControlTableItem(TORQUE_ENABLE, j, 1);
-  dxl.torqueOn(j);
+  dxl.writeControlTableItem(TORQUE_ENABLE, j, 1);
+  // dxl.torqueOn(j);
   // DEBUG_SERIAL.println("test");
  }
   //dxl.torqueOn(DXL_ID);
@@ -54,23 +54,22 @@ void transferData(){
   for(int i=1; i<5;i++){
   uint8_t id = i;
   uint16_t valueOfDyna = dxl.readControlTableItem(PRESENT_POSITION, id);
-  DEBUG_SERIAL.print("value");
-  DEBUG_SERIAL.println(valueOfDyna);
-  DEBUG_SERIAL.print("error:");
-  DEBUG_SERIAL.println(dxl.getLastLibErrCode());
+  // DEBUG_SERIAL.print("value");
+  // DEBUG_SERIAL.println(valueOfDyna);
+  // DEBUG_SERIAL.print("error:");
+  // DEBUG_SERIAL.println(dxl.getLastLibErrCode());
 
-  //uint16_t valueOfDyna = 1000;
-  // uint8_t outBuffer[7];   
+  uint8_t outBuffer[7];   
 
-  // outBuffer[0] = lowByte(60000);
-  // outBuffer[1] = highByte(60000);
-  // outBuffer[2] = 4;
-  // outBuffer[3] = i;
-  // outBuffer[4] = lowByte(valueOfDyna);
-  // outBuffer[5] = highByte(valueOfDyna);
-  // outBuffer[6] = 244;
+  outBuffer[0] = lowByte(60000);
+  outBuffer[1] = highByte(60000);
+  outBuffer[2] = 4;
+  outBuffer[3] = i;
+  outBuffer[4] = lowByte(valueOfDyna);
+  outBuffer[5] = highByte(valueOfDyna);
+  outBuffer[6] = 244;
 
-  // DEBUG_SERIAL.write(outBuffer, 7); 
+  DEBUG_SERIAL.write(outBuffer, 7); 
   }
 
 }
