@@ -1,3 +1,6 @@
 [submodule "Dynamixel2Arduino"]
 	path = Dynamixel2Arduino
 	url = https://github.com/ROBOTIS-GIT/Dynamixel2Arduino/
+[submodule "lib/Dynamixel2Arduino"]
+	path = lib/Dynamixel2Arduino
+	url = https://github.com/ROBOTIS-GIT/Dynamixel2Arduino

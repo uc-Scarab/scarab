@@ -13,7 +13,7 @@ SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
 // #endif
 //#define DXL_SERIAL   Serial1
 //#define DEBUG_SERIAL soft_serial
-const uint8_t DXL_DIR_PIN = 9; // DYNAMIXEL Shield DIR PIN
+const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 #define INT_JOIN_BYTE(u, l) (u << 8) | l
 
 #define UPPER_BYTE(b) (b >> 8) //defines byte structure 
@@ -28,13 +28,14 @@ Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 void setup() {
   
   // put your setup code here, to run once:
-  DEBUG_SERIAL.begin(115200);
+  DEBUG_SERIAL.begin(9600);
+  DEBUG_SERIAL.flush();
   
   // Set Port baudrate to 57600bps. This has to match with DYNAMIXEL baudrate.
   dxl.begin(1000000);
   // Set Port Protocol Version. This has to match with DYNAMIXEL protocol version.
   dxl.setPortProtocolVersion(DXL_PROTOCOL_VERSION);
-
+  pinMode(LED_BUILTIN, OUTPUT);
   // Turn off torque when configuring items in EEPROM area
   //Need to turn the torque off for all dynamixels DH
   for(int i = 1; i <= 4; i++){
@@ -43,8 +44,8 @@ void setup() {
 
  for(int j = 1; j <= 4; j++){
   dxl.setOperatingMode(j, OP_POSITION);
-  dxl.writeControlTableItem(TORQUE_ENABLE, j, 1);
-  // dxl.torqueOn(j);
+  // dxl.writeControlTableItem(TORQUE_ENABLE, j, 1);
+  dxl.torqueOn(j);
   // DEBUG_SERIAL.println("test");
  }
   //dxl.torqueOn(DXL_ID);
@@ -81,19 +82,17 @@ void blink(){
 }
 
 void recieveData(){
-    DEBUG_SERIAL.print("available:");
-    DEBUG_SERIAL.println(DEBUG_SERIAL.available());
     if(DEBUG_SERIAL.available() >= 3){
-       DEBUG_SERIAL.println("test");
-        uint8_t check_buffer[3];
+      //  DEBUG_SERIAL.println("test");
+      // blink();
+        byte check_buffer[3];
         DEBUG_SERIAL.readBytes(check_buffer, 3);
         uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
-        if(int(check) != 60000){
+        if(check != 60000){
             DEBUG_SERIAL.flush();
-            DEBUG_SERIAL.print("check:");
-            DEBUG_SERIAL.println(check);
-            // digitalWrite(LED_BUILTIN, LOW);
+            blink();
         } else {
+          DEBUG_SERIAL.println(check);
             digitalWrite(LED_BUILTIN, HIGH);
             int payload = int(check_buffer[2]);
             uint8_t message_buffer[payload];
@@ -102,27 +101,21 @@ void recieveData(){
             for(int i=0;i<payload -4;i+=4){
                 int id = int(message_buffer[i]);
                 
-                DEBUG_SERIAL.print("id:");
-                DEBUG_SERIAL.println(id);
                 int command = int(message_buffer[i + 1]);
                 uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
-                DEBUG_SERIAL.print("command");
-                DEBUG_SERIAL.print(command);
-                DEBUG_SERIAL.print("full_byte:");
-                DEBUG_SERIAL.println(full_byte);
-
                 dxl.writeControlTableItem(command, id ,int(full_byte));
                 delay(2000);
 
 
                 }
 
-                    //if (message_buffer[payload - 1] != 244){
-                    //DEBUG_SERIAL.flush();
-                    //}
+                    if (message_buffer[payload - 1] != 244){
+                    DEBUG_SERIAL.flush();
+                    }
  
         }
-    }
+    
+}
 }
 
 
@@ -143,9 +136,13 @@ void loop() {
     //DEBUG_SERIAL.print(",");
  //} 
   
-transferData(); 
+// transferData(); 
+// for(int i = 1; i < 5; i++){
+//   dxl.writeControlTableItem(GOAL_POSITION, i, 2048);
+//   delay(1000);
+// }
 // delay(100);
-// recieveData();
+recieveData();
 // DEBUG_SERIAL.printl("test");
 // blink();
 // dxl.torqueOn(1);
@@ -158,6 +155,14 @@ transferData();
 //   // dxl.setOperatingMode(j, OP_POSITION);
 //   dxl.writeControlTableItem(24, j, 1);
 //  }
+
+  // uint16_t test = dxl.readControlTableItem(PRESENT_POSITION, 1);
+  // DEBUG_SERIAL.print("value:");
+  // DEBUG_SERIAL.println(test);
+
+  // DEBUG_SERIAL.print("error:");
+  // DEBUG_SERIAL.println(dxl.getLastLibErrCode());
+
 delay(100);
 }
 
