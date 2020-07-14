@@ -52,9 +52,9 @@ void setup() {
 }
 
 void transferData(){
-  for(int i=1; i<5;i++){
-  uint8_t id = i;
+  for(int id=1; id<5;id++){
   uint16_t valueOfDyna = dxl.readControlTableItem(PRESENT_POSITION, id);
+  //uint16_t valueOfDyna = 1000;
   // DEBUG_SERIAL.print("value");
   // DEBUG_SERIAL.println(valueOfDyna);
   // DEBUG_SERIAL.print("error:");
@@ -65,7 +65,7 @@ void transferData(){
   outBuffer[0] = lowByte(60000);
   outBuffer[1] = highByte(60000);
   outBuffer[2] = 4;
-  outBuffer[3] = i;
+  outBuffer[3] = id;
   outBuffer[4] = lowByte(valueOfDyna);
   outBuffer[5] = highByte(valueOfDyna);
   outBuffer[6] = 244;
@@ -104,7 +104,7 @@ void recieveData(){
                 int command = int(message_buffer[i + 1]);
                 uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
                 dxl.writeControlTableItem(command, id ,int(full_byte));
-                delay(2000);
+                delay(1000);
 
 
                 }
@@ -136,13 +136,14 @@ void loop() {
     //DEBUG_SERIAL.print(",");
  //} 
   
-// transferData(); 
+ transferData(); 
 // for(int i = 1; i < 5; i++){
 //   dxl.writeControlTableItem(GOAL_POSITION, i, 2048);
 //   delay(1000);
 // }
-// delay(100);
-recieveData();
+ delay(100);
+ recieveData();
+ delay(100);
 // DEBUG_SERIAL.printl("test");
 // blink();
 // dxl.torqueOn(1);
@@ -164,5 +165,6 @@ recieveData();
   // DEBUG_SERIAL.println(dxl.getLastLibErrCode());
 
 delay(100);
+//DEBUG_SERIAL.println("test");
 }
 
