@@ -11,8 +11,8 @@ SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
 //   #define DEBUG_SERIAL soft_serial
 //   const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 // #endif
-//#define DXL_SERIAL   Serial1
-//#define DEBUG_SERIAL soft_serial
+#define DXL_SERIAL   Serial
+#define DEBUG_SERIAL Serial1
 const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 #define INT_JOIN_BYTE(u, l) (u << 8) | l
 
@@ -85,7 +85,7 @@ void recieveData(){
     if(DEBUG_SERIAL.available() >= 3){
       //  DEBUG_SERIAL.println("test");
       // blink();
-        byte check_buffer[3];
+        char check_buffer[3];
         DEBUG_SERIAL.readBytes(check_buffer, 3);
         uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
         if(check != 60000){
@@ -94,16 +94,16 @@ void recieveData(){
         } else {
           DEBUG_SERIAL.println(check);
             digitalWrite(LED_BUILTIN, HIGH);
-            int payload = int(check_buffer[2]);
+            uint8_t payload = check_buffer[2];
             uint8_t message_buffer[payload];
             DEBUG_SERIAL.readBytes(message_buffer, payload);
 
             for(int i=0;i<payload -4;i+=4){
-                int id = int(message_buffer[i]);
+                uint8_t id = message_buffer[i];
                 
-                int command = int(message_buffer[i + 1]);
+                uint8_t command = message_buffer[i + 1];
                 uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
-                dxl.writeControlTableItem(command, id ,int(full_byte));
+                dxl.writeControlTableItem(command, id ,full_byte);
                 delay(1000);
 
 
@@ -119,7 +119,8 @@ void recieveData(){
 }
 
 
-
+unsigned long last_serial = 0;
+unsigned long time_now = 0;
 
 
 void loop() {
@@ -135,15 +136,16 @@ void loop() {
     //DEBUG_SERIAL.print(String(valueOfDyna));
     //DEBUG_SERIAL.print(",");
  //} 
-  
+ time_now = millis();
+ if((time_now  - last_serial) >= 100){
  transferData(); 
+ last_serial = time_now;
+ }
 // for(int i = 1; i < 5; i++){
 //   dxl.writeControlTableItem(GOAL_POSITION, i, 2048);
 //   delay(1000);
 // }
- delay(100);
  recieveData();
- delay(100);
 // DEBUG_SERIAL.printl("test");
 // blink();
 // dxl.torqueOn(1);
@@ -164,7 +166,6 @@ void loop() {
   // DEBUG_SERIAL.print("error:");
   // DEBUG_SERIAL.println(dxl.getLastLibErrCode());
 
-delay(100);
 //DEBUG_SERIAL.println("test");
 }
 
