@@ -4,24 +4,17 @@
 #ifndef skipSoftSerial
 SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
 #endif
-// #if defined(ARDUINO_AVR_UNO) || defined(ARDUINO_AVR_MEGA2560) // When using DynamixelShield
-//   #include <SoftwareSerial.h>
-//   SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
-//   #define DXL_SERIAL   Serial
-//   #define DEBUG_SERIAL soft_serial
-//   const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
-// #endif
 #define DXL_SERIAL   Serial
 #define DEBUG_SERIAL Serial1
 const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
+
+# a few functions for manipulating bytes
 #define INT_JOIN_BYTE(u, l) (u << 8) | l
 
 #define UPPER_BYTE(b) (b >> 8) //defines byte structure 
 #define LOWER_BYTE(b) (b & 0xff)
 
-//const uint16_t DXL_ID[4] = { 2, 3, 4, 5 }; // current leg ID range is 2-5 , convert this to array 2-5 DH
 const float DXL_PROTOCOL_VERSION = 1.0; //changed from 2.0 to 1.0 
-const int DXL_ID = 1;
 
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 
@@ -31,35 +24,28 @@ void setup() {
   DEBUG_SERIAL.begin(9600);
   DEBUG_SERIAL.flush();
   
-  // Set Port baudrate to 57600bps. This has to match with DYNAMIXEL baudrate.
+  // Set Port baudrate to 1000000bps. This has to match with DYNAMIXEL baudrate.
   dxl.begin(1000000);
   // Set Port Protocol Version. This has to match with DYNAMIXEL protocol version.
   dxl.setPortProtocolVersion(DXL_PROTOCOL_VERSION);
   pinMode(LED_BUILTIN, OUTPUT);
   // Turn off torque when configuring items in EEPROM area
   //Need to turn the torque off for all dynamixels DH
-  for(int i = 1; i <= 4; i++){
-  dxl.torqueOff(i);
+  for(int id = 1; id <= 4; id++){
+  dxl.torqueOff(id);
   }
 
- for(int j = 1; j <= 4; j++){
-  dxl.setOperatingMode(j, OP_POSITION);
-  // dxl.writeControlTableItem(TORQUE_ENABLE, j, 1);
-  dxl.torqueOn(j);
-  // DEBUG_SERIAL.println("test");
+ for(int id = 1; id <= 4; id++){
+  // set operating mode to position     
+  dxl.setOperatingMode(id, OP_POSITION);
+  dxl.torqueOn(id);
  }
-  //dxl.torqueOn(DXL_ID);
 }
 
-void transferData(){
+void sendPositions(){
+  // send positions of the dynamixels over serial
   for(int id=1; id<5;id++){
   uint16_t valueOfDyna = dxl.readControlTableItem(PRESENT_POSITION, id);
-  //uint16_t valueOfDyna = 1000;
-  // DEBUG_SERIAL.print("value");
-  // DEBUG_SERIAL.println(valueOfDyna);
-  // DEBUG_SERIAL.print("error:");
-  // DEBUG_SERIAL.println(dxl.getLastLibErrCode());
-
   uint8_t outBuffer[7];   
 
   outBuffer[0] = lowByte(60000);
@@ -81,10 +67,10 @@ void blink(){
   digitalWrite(LED_BUILTIN, LOW);
 }
 
-void recieveData(){
+void recieveCommands(){
+    // read dynamixel control table commands and pass them on to the Dynamixels
     if(DEBUG_SERIAL.available() >= 3){
-      //  DEBUG_SERIAL.println("test");
-      // blink();
+        // reads two bytes of 
         char check_buffer[3];
         DEBUG_SERIAL.readBytes(check_buffer, 3);
         uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
@@ -106,7 +92,6 @@ void recieveData(){
                 dxl.writeControlTableItem(command, id ,full_byte);
                 delay(1000);
 
-
                 }
 
                     if (message_buffer[payload - 1] != 244){
@@ -124,48 +109,15 @@ unsigned long time_now = 0;
 
 
 void loop() {
-    //dxl.writeControlTableItem(GOAL_POSITION, 5, 0);
-    //delay(1000);
-    //dxl.writeControlTableItem(GOAL_POSITION, 5, 1000);
-    //delay(1000);
-  ////uint16_t position=dxl.getPresentPosition(DXL_ID);
- 
 
-  //for(int k = 2; k <= 5; k++){
-    //uint16_t valueOfDyna = dxl.getPresentPosition(k);
-    //DEBUG_SERIAL.print(String(valueOfDyna));
-    //DEBUG_SERIAL.print(",");
- //} 
- time_now = millis();
+//sends positions every 100 milliseconds
+time_now = millis();
  if((time_now  - last_serial) >= 100){
- transferData(); 
+ sendPositions(); 
  last_serial = time_now;
  }
-// for(int i = 1; i < 5; i++){
-//   dxl.writeControlTableItem(GOAL_POSITION, i, 2048);
-//   delay(1000);
-// }
- recieveData();
-// DEBUG_SERIAL.printl("test");
-// blink();
-// dxl.torqueOn(1);
-//  dxl.writeControlTableItem(GOAL_POSITION, 4, 2048);
-//  delay(2000);
-//  dxl.writeControlTableItem(GOAL_POSITION, 4, 1000);
-//  delay(2000);
-// dxl.writeControlTableItem(TORQUE_ENABLE, DXL_ID, 1);
-//  for(int j = 1; j <= 4; j++){
-//   // dxl.setOperatingMode(j, OP_POSITION);
-//   dxl.writeControlTableItem(24, j, 1);
-//  }
 
-  // uint16_t test = dxl.readControlTableItem(PRESENT_POSITION, 1);
-  // DEBUG_SERIAL.print("value:");
-  // DEBUG_SERIAL.println(test);
+recieveCommands();
 
-  // DEBUG_SERIAL.print("error:");
-  // DEBUG_SERIAL.println(dxl.getLastLibErrCode());
-
-//DEBUG_SERIAL.println("test");
 }
 
