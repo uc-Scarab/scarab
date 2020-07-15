@@ -8,7 +8,12 @@ SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
 #define COMPUTER_SERIAL Serial1 // serial connection to computer
 const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 
-# a few functions for manipulating bytes
+// a few functions for manipulating bytes
+//#define DXL_SERIAL   Serial
+//#define DEBUG_SERIAL Serial1
+const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
+
+// a few functions for manipulating bytes
 #define INT_JOIN_BYTE(u, l) (u << 8) | l
 
 #define UPPER_BYTE(b) (b >> 8) //defines byte structure 
