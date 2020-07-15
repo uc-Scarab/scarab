@@ -11,8 +11,8 @@ SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
 //   #define DEBUG_SERIAL soft_serial
 //   const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 // #endif
-#define DXL_SERIAL   Serial
-#define DEBUG_SERIAL Serial1
+//#define DXL_SERIAL   Serial
+//#define DEBUG_SERIAL Serial1
 const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 #define INT_JOIN_BYTE(u, l) (u << 8) | l
 
