@@ -4,8 +4,8 @@
 #ifndef skipSoftSerial
 SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
 #endif
-#define DXL_SERIAL   Serial
-#define DEBUG_SERIAL Serial1
+#define DXL_SERIAL   Serial // serial connection to Dynamixels
+#define COMPUTER_SERIAL Serial1 // serial connection to computer
 const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 
 # a few functions for manipulating bytes
@@ -21,8 +21,8 @@ Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 void setup() {
   
   // put your setup code here, to run once:
-  DEBUG_SERIAL.begin(9600);
-  DEBUG_SERIAL.flush();
+  COMPUTER_SERIAL.begin(9600);
+  COMPUTER_SERIAL.flush();
   
   // Set Port baudrate to 1000000bps. This has to match with DYNAMIXEL baudrate.
   dxl.begin(1000000);
@@ -30,7 +30,6 @@ void setup() {
   dxl.setPortProtocolVersion(DXL_PROTOCOL_VERSION);
   pinMode(LED_BUILTIN, OUTPUT);
   // Turn off torque when configuring items in EEPROM area
-  //Need to turn the torque off for all dynamixels DH
   for(int id = 1; id <= 4; id++){
   dxl.torqueOff(id);
   }
@@ -43,25 +42,31 @@ void setup() {
 }
 
 void sendPositions(){
-  // send positions of the dynamixels over serial
+  // sends positions of the dynamixels over serial
+  
   for(int id=1; id<5;id++){
   uint16_t valueOfDyna = dxl.readControlTableItem(PRESENT_POSITION, id);
   uint8_t outBuffer[7];   
-
+  //starts with header of first two bytes which is always 60000  
   outBuffer[0] = lowByte(60000);
   outBuffer[1] = highByte(60000);
+  // third byte payload which is the number of bytes in the message
   outBuffer[2] = 4;
+  // the message reports the position of any number of motors with an id, and two bytes for the position 
   outBuffer[3] = id;
   outBuffer[4] = lowByte(valueOfDyna);
   outBuffer[5] = highByte(valueOfDyna);
+
+  //then the message ends with the footer which is always 244
   outBuffer[6] = 244;
 
-  DEBUG_SERIAL.write(outBuffer, 7); 
+  COMPUTER_SERIAL.write(outBuffer, 7); 
   }
 
 }
 
 void blink(){
+    //blinks the inbuilt led for debugging
   digitalWrite(LED_BUILTIN, HIGH);
   delay(500);
   digitalWrite(LED_BUILTIN, LOW);
@@ -69,24 +74,26 @@ void blink(){
 
 void recieveCommands(){
     // read dynamixel control table commands and pass them on to the Dynamixels
-    if(DEBUG_SERIAL.available() >= 3){
-        // reads two bytes of 
+    if(COMPUTER_SERIAL.available() >= 3){
+        // reads two bytes of header and one byte for the payload. If the two header bytes are equal to 60000 then read in a number of bytes equal to the payload. 
         char check_buffer[3];
-        DEBUG_SERIAL.readBytes(check_buffer, 3);
+        COMPUTER_SERIAL.readBytes(check_buffer, 3);
         uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
         if(check != 60000){
-            DEBUG_SERIAL.flush();
+            COMPUTER_SERIAL.flush();
             blink();
         } else {
-          DEBUG_SERIAL.println(check);
+          COMPUTER_SERIAL.println(check);
             digitalWrite(LED_BUILTIN, HIGH);
             uint8_t payload = check_buffer[2];
             uint8_t message_buffer[payload];
-            DEBUG_SERIAL.readBytes(message_buffer, payload);
+            COMPUTER_SERIAL.readBytes(message_buffer, payload);
 
             for(int i=0;i<payload -4;i+=4){
+                //writes a control table item command using motor id, command id and value.
+                //
                 uint8_t id = message_buffer[i];
-                
+                 
                 uint8_t command = message_buffer[i + 1];
                 uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
                 dxl.writeControlTableItem(command, id ,full_byte);
@@ -94,8 +101,10 @@ void recieveCommands(){
 
                 }
 
+                    // flushes the serial bufffer if the footer doesn't equal 244
+
                     if (message_buffer[payload - 1] != 244){
-                    DEBUG_SERIAL.flush();
+                    COMPUTER_SERIAL.flush();
                     }
  
         }
