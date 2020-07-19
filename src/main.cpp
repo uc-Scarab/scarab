@@ -77,6 +77,21 @@ void blink(){
   digitalWrite(LED_BUILTIN, LOW);
 }
 
+uint16_t dynPosVel(uint16_t position, uint8_t dynid){
+  //Takes goal and current servo position and calculates velocity required to reach goal within 100ms.
+  //
+  uint16_t cur_pos = dxl.readControlTableItem(PRESENT_POSITION, dynid);
+  uint16_t goal_speed = position - cur_pos;
+  goal_speed = (goal_speed / 0.1);
+  goal_speed = ((goal_speed / 651.7587)*84.0731)       
+  goal_speed = round(goal_speed);
+  if(goal_speed > 1023){
+    goal_speed = 1023;
+  }
+  return goal_speed;
+}
+
+
 void recieveCommands(){
     // read dynamixel control table commands and pass them on to the Dynamixels
     if(COMPUTER_SERIAL.available() >= 3){
@@ -98,9 +113,17 @@ void recieveCommands(){
                 //writes a control table item command using motor id, command id and value.
                 //
                 uint8_t id = message_buffer[i];
-                 
                 uint8_t command = message_buffer[i + 1];
                 uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
+                if(command == 61){
+                  full_byte = dynPosVel(full_byte, id);
+                }
+                if((command == 58) && (full_byte < 4095)){
+                  full_byte = (full_byte + 41)
+                  if(full_byte > 4095){
+                    full_byte = 4095)
+                  }
+                }
                 dxl.writeControlTableItem(command, id ,full_byte);
                 delay(1000);
 
