@@ -4,10 +4,8 @@
 #ifndef skipSoftSerial
 SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
 #endif
-#define DXL_SERIAL   Serial // serial connection to Dynamixels
-#define COMPUTER_SERIAL Serial1 // serial connection to computer
-const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
-
+//#define DXL_SERIAL   Serial // serial connection to Dynamixels
+//#define COMPUTER_SERIAL Serial1 // serial connection to computer
 // a few functions for manipulating bytes
 const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 
@@ -73,11 +71,17 @@ void blink(){
   digitalWrite(LED_BUILTIN, HIGH);
   delay(500);
   digitalWrite(LED_BUILTIN, LOW);
+
 }
 
-uint16_t calculateDynamixelVelocity(uint16_t position, uint8_t dynid){
+void setCurrentPositionAndVelocity(uint16_t position, uint8_t dynid){
   //Takes goal and current servo position and calculates velocity required to reach goal within 100ms.
   //
+  
+  if(position > 4095){
+    position = 4095;
+    }
+
   uint16_t cur_pos = dxl.readControlTableItem(PRESENT_POSITION, dynid);
   uint16_t goal_speed = position - cur_pos;
   goal_speed = (goal_speed / 0.1);
@@ -86,7 +90,10 @@ uint16_t calculateDynamixelVelocity(uint16_t position, uint8_t dynid){
   if(goal_speed > 1023){
     goal_speed = 1023;
   }
-  return goal_speed;
+
+  uint16_t overshoot_position = position * 1.3;
+  dxl.writeControlTableItem(MOVING_SPEED, dynid, goal_speed);
+  dxl.writeControlTableItem(GOAL_POSITION, dynid, overshoot_position);
 }
 
 
@@ -114,23 +121,20 @@ void recieveCommands(){
                 uint8_t command = message_buffer[i + 1];
                 uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
                 
-                //run a function that does overshoot, sets goal velocity
 
                 if((command == 58) && (full_byte <= 4095)){
-                  full_byte = (full_byte + ((full_byte - dxl.readControlTableItem(PRESENT_POSITION, dynid))*0.3));
-                  if(full_byte > 4095){
-                    full_byte = 4095;
-                  }
-                  uint16_t vel_byte = calculateDynamixelVelocity(full_byte, id);
-                  dxl.writeControlTableItem(61, id ,vel_byte);
-                }
+                    
+                  
+                setCurrentPositionAndVelocity(id, full_byte);                        
+                } else {
+
                 dxl.writeControlTableItem(command, id ,full_byte);
+                }
                 delay(1000);
 
                 }
 
-                    // flushes the serial bufffer if the footer doesn't equal 244
-
+                // flushes the serial buffer if the footer doesn't equal 244
                     if (message_buffer[payload - 1] != 244){
                     COMPUTER_SERIAL.flush();
                     }
