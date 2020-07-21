@@ -114,8 +114,10 @@ void recieveCommands(){
                 uint8_t command = message_buffer[i + 1];
                 uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
                 
+                //run a function that does overshoot, sets goal velocity
+
                 if((command == 58) && (full_byte <= 4095)){
-                  full_byte = (full_byte + 41);
+                  full_byte = (full_byte + ((full_byte - dxl.readControlTableItem(PRESENT_POSITION, dynid))*0.3));
                   if(full_byte > 4095){
                     full_byte = 4095;
                   }
