@@ -9,8 +9,6 @@ SoftwareSerial soft_serial(7, 8); // DYNAMIXELShield UART RX/TX
 const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 
 // a few functions for manipulating bytes
-//#define DXL_SERIAL   Serial
-//#define DEBUG_SERIAL Serial1
 const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 
 // a few functions for manipulating bytes
@@ -83,7 +81,7 @@ uint16_t dynPosVel(uint16_t position, uint8_t dynid){
   uint16_t cur_pos = dxl.readControlTableItem(PRESENT_POSITION, dynid);
   uint16_t goal_speed = position - cur_pos;
   goal_speed = (goal_speed / 0.1);
-  goal_speed = ((goal_speed / 651.7587)*84.0731)       
+  goal_speed = ((goal_speed / 651.7587)*84.0731);       
   goal_speed = round(goal_speed);
   if(goal_speed > 1023){
     goal_speed = 1023;
@@ -118,10 +116,11 @@ void recieveCommands(){
                 if(command == 61){
                   full_byte = dynPosVel(full_byte, id);
                 }
+                
                 if((command == 58) && (full_byte < 4095)){
-                  full_byte = (full_byte + 41)
+                  full_byte = (full_byte + 41);
                   if(full_byte > 4095){
-                    full_byte = 4095)
+                    full_byte = 4095;
                   }
                 }
                 dxl.writeControlTableItem(command, id ,full_byte);
