@@ -47,7 +47,7 @@ void setup() {
 void sendPositions(){
   // sends positions of the dynamixels over serial
   
-  for(int id=1; id<5;id++){
+  for(int id=1; id<25;id++){
   uint16_t valueOfDyna = dxl.readControlTableItem(PRESENT_POSITION, id);
   uint8_t outBuffer[7];   
   //starts with header of first two bytes which is always 60000  
@@ -75,7 +75,7 @@ void blink(){
   digitalWrite(LED_BUILTIN, LOW);
 }
 
-uint16_t dynPosVel(uint16_t position, uint8_t dynid){
+uint16_t calculateDynamixelVelocity(uint16_t position, uint8_t dynid){
   //Takes goal and current servo position and calculates velocity required to reach goal within 100ms.
   //
   uint16_t cur_pos = dxl.readControlTableItem(PRESENT_POSITION, dynid);
@@ -113,15 +113,14 @@ void recieveCommands(){
                 uint8_t id = message_buffer[i];
                 uint8_t command = message_buffer[i + 1];
                 uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
-                if(command == 61){
-                  full_byte = dynPosVel(full_byte, id);
-                }
                 
-                if((command == 58) && (full_byte < 4095)){
+                if((command == 58) && (full_byte <= 4095)){
                   full_byte = (full_byte + 41);
                   if(full_byte > 4095){
                     full_byte = 4095;
                   }
+                  uint16_t vel_byte = calculateDynamixelVelocity(full_byte, id);
+                  dxl.writeControlTableItem(61, id ,vel_byte);
                 }
                 dxl.writeControlTableItem(command, id ,full_byte);
                 delay(1000);
