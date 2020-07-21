@@ -22,7 +22,7 @@ Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 void setup() {
   
   // put your setup code here, to run once:
-  COMPUTER_SERIAL.begin(9600);
+  COMPUTER_SERIAL.begin(115200);
   COMPUTER_SERIAL.flush();
   
   // Set Port baudrate to 1000000bps. This has to match with DYNAMIXEL baudrate.
@@ -31,11 +31,11 @@ void setup() {
   dxl.setPortProtocolVersion(DXL_PROTOCOL_VERSION);
   pinMode(LED_BUILTIN, OUTPUT);
   // Turn off torque when configuring items in EEPROM area
-  for(int id = 1; id <= 4; id++){
+  for(int id = 5; id <= 9; id++){
   dxl.torqueOff(id);
   }
 
- for(int id = 1; id <= 4; id++){
+ for(int id = 5; id <= 9; id++){
   // set operating mode to position     
   dxl.setOperatingMode(id, OP_POSITION);
   dxl.torqueOn(id);
@@ -45,7 +45,7 @@ void setup() {
 void sendPositions(){
   // sends positions of the dynamixels over serial
   
-  for(int id=1; id<25;id++){
+  for(int id=5; id<9;id++){
   uint16_t valueOfDyna = dxl.readControlTableItem(PRESENT_POSITION, id);
   uint8_t outBuffer[7];   
   //starts with header of first two bytes which is always 60000  
