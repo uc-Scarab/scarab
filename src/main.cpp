@@ -31,11 +31,11 @@ void setup() {
   dxl.setPortProtocolVersion(DXL_PROTOCOL_VERSION);
   pinMode(LED_BUILTIN, OUTPUT);
   // Turn off torque when configuring items in EEPROM area
-  for(int id = 5; id <= 9; id++){
+  for(int id = 1; id <= 25; id++){
   dxl.torqueOff(id);
   }
 
- for(int id = 5; id <= 9; id++){
+ for(int id = 1; id <= 25; id++){
   // set operating mode to position     
   dxl.setOperatingMode(id, OP_POSITION);
   dxl.torqueOn(id);
@@ -45,7 +45,7 @@ void setup() {
 void sendPositions(){
   // sends positions of the dynamixels over serial
   
-  for(int id=5; id<9;id++){
+  for(int id=1; id<25;id++){
   uint16_t valueOfDyna = dxl.readControlTableItem(PRESENT_POSITION, id);
   uint8_t outBuffer[7];   
   //starts with header of first two bytes which is always 60000  
@@ -152,11 +152,11 @@ unsigned long time_now = 0;
 void loop() {
 
 //sends positions every 100 milliseconds
-time_now = millis();
- if((time_now  - last_serial) >= 100){
- sendPositions(); 
- last_serial = time_now;
- }
+//time_now = millis();
+ //if((time_now  - last_serial) >= 100){
+ //sendPositions(); 
+ //last_serial = time_now;
+ //}
 
 recieveCommands();
 
