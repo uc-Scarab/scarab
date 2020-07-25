@@ -108,7 +108,6 @@ void recieveCommands(){
             COMPUTER_SERIAL.flush();
             blink();
         } else {
-          COMPUTER_SERIAL.println(check);
             digitalWrite(LED_BUILTIN, HIGH);
             uint8_t payload = check_buffer[2];
             uint8_t message_buffer[payload];
@@ -130,7 +129,6 @@ void recieveCommands(){
 
                 dxl.writeControlTableItem(command, id ,full_byte);
                 }
-                delay(1000);
 
                 }
 
@@ -152,11 +150,11 @@ unsigned long time_now = 0;
 void loop() {
 
 //sends positions every 100 milliseconds
-//time_now = millis();
- //if((time_now  - last_serial) >= 100){
- //sendPositions(); 
- //last_serial = time_now;
- //}
+time_now = millis();
+ if((time_now  - last_serial) >= 100){
+ sendPositions(); 
+ last_serial = time_now;
+ }
 
 recieveCommands();
 
