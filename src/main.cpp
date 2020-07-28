@@ -161,7 +161,7 @@ void loop() {
 //sends positions every 100 milliseconds
 time_now = millis();
  if((time_now  - last_serial) >= 20){
- //sendPositions(); 
+ sendPositions(); 
 recieveCommands();
  last_serial = time_now;
  }
