@@ -128,6 +128,7 @@ void recieveCommands(){
                 COMPUTER_SERIAL.println(command);
                 COMPUTER_SERIAL.print("value");
                 COMPUTER_SERIAL.println(full_byte);
+                int x = 5;
 
 
 
