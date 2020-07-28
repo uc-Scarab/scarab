@@ -120,6 +120,11 @@ void recieveCommands(){
                 uint8_t command = message_buffer[i + 1];
                 uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
                 
+                COMPUTER_SERIAL.println("COMMAND TEST START");
+                COMPUTER_SERIAL.println(id);
+                COMPUTER_SERIAL.println(command);
+                COMPUTER_SERIAL.println(full_byte);
+                COMPUTER_SERIAL.println("COMMAND TEST END");
 
                 if((command == 58) && (full_byte <= 4095)){
                     
