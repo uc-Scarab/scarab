@@ -39,7 +39,9 @@ void setup() {
   // set operating mode to position     
   dxl.setOperatingMode(id, OP_POSITION);
   dxl.torqueOn(id);
+  dxl.writeControlTableItem(MAX_TORQUE, id, 200);
  }
+
 }
 
 void sendPositions(){
@@ -120,11 +122,19 @@ void recieveCommands(){
                 uint8_t command = message_buffer[i + 1];
                 uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
                 
+                COMPUTER_SERIAL.print("id");
+                COMPUTER_SERIAL.println(id);
+                COMPUTER_SERIAL.print("command");
+                COMPUTER_SERIAL.println(command);
+                COMPUTER_SERIAL.print("value");
+                COMPUTER_SERIAL.println(full_byte);
+
+
 
                 if((command == 58) && (full_byte <= 4095)){
                     
-                  
-                setCurrentPositionAndVelocity(id, full_byte);                        
+                 //dxl.writeControlTableItem(command, id ,full_byte);
+                //setCurrentPositionAndVelocity(id, full_byte);                        
                 } else {
 
                 dxl.writeControlTableItem(command, id ,full_byte);
@@ -135,7 +145,7 @@ void recieveCommands(){
                     if (message_buffer[payload - 1] != 244){
                     COMPUTER_SERIAL.flush();
                     }
- 
+
         }
     
 }
@@ -150,12 +160,12 @@ void loop() {
 
 //sends positions every 100 milliseconds
 time_now = millis();
- if((time_now  - last_serial) >= 100){
+ if((time_now  - last_serial) >= 20){
  //sendPositions(); 
+recieveCommands();
  last_serial = time_now;
  }
 
-recieveCommands();
 
 }
 
