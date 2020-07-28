@@ -131,7 +131,6 @@ void recieveCommands(){
                 }
 
                 }
-
                 // flushes the serial buffer if the footer doesn't equal 244
                     if (message_buffer[payload - 1] != 244){
                     COMPUTER_SERIAL.flush();
