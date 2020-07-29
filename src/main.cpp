@@ -14,6 +14,7 @@ const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 
 #define UPPER_BYTE(b) (b >> 8) //defines byte structure 
 #define LOWER_BYTE(b) (b & 0xff)
+#define transferRate 20
 
 const float DXL_PROTOCOL_VERSION = 1.0; //changed from 2.0 to 1.0 
 
@@ -22,7 +23,8 @@ Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 void setup() {
   
   // put your setup code here, to run once:
-  COMPUTER_SERIAL.begin(115200);
+  // teensy ignores anything passed to begin() and sets the baud rate to 12 million
+  COMPUTER_SERIAL.begin(12000000);
   COMPUTER_SERIAL.flush();
   
   // Set Port baudrate to 1000000bps. This has to match with DYNAMIXEL baudrate.
@@ -71,7 +73,6 @@ void sendPositions(){
 void blink(){
     //blinks the inbuilt led for debugging
   digitalWrite(LED_BUILTIN, HIGH);
-  delay(500);
   digitalWrite(LED_BUILTIN, LOW);
 
 }
@@ -160,7 +161,7 @@ void loop() {
 
 //sends positions every 100 milliseconds
 time_now = millis();
- if((time_now  - last_serial) >= 20){
+ if((time_now  - last_serial) >= transferRate){
  sendPositions(); 
 recieveCommands();
  last_serial = time_now;
