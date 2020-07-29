@@ -13,7 +13,8 @@ const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 #define UPPER_BYTE(b) (b >> 8) //defines byte structure
 #define LOWER_BYTE(b) (b & 0xff)
 #define baudrate 115200
-#define transferRate 20
+#define dxlTimeout 60
+
 const float DXL_PROTOCOL_VERSION = 1.0; //changed from 2.0 to 1.0
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
 void setup()
@@ -25,7 +26,6 @@ void setup()
   dxl.begin(1000000);
   // Set Port Protocol Version. This has to match with DYNAMIXEL protocol version.
   dxl.setPortProtocolVersion(DXL_PROTOCOL_VERSION);
-  pinMode(LED_BUILTIN, OUTPUT);
   // Turn off torque when configuring items in EEPROM area
   for (int id = 1; id <= 25; id++)
   {
@@ -39,6 +39,24 @@ void setup()
     dxl.writeControlTableItem(MAX_TORQUE, id, 200);
   }
 }
+
+void serialFlush(){
+  while(Serial.available() > 0) {
+    char t = Serial.read();
+  }
+}  
+
+void dynamixelWrite(uint8_t motor_id, uint8_t command_id, uint16_t value){
+    for(int i = 0; i < 3; i++){  
+          dxl.writeControlTableItem(command_id, motor_id, value, dxlTimeout);
+          int errorCode = dxl.getLastLibErrCode();
+          if(errorCode == 0){
+              break;
+          }
+         
+}
+}
+
 void sendPositions()
 {
   // sends positions of the dynamixels over serial
@@ -98,12 +116,10 @@ void recieveCommands()
     uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
     if (check != 60000)
     {
-      COMPUTER_SERIAL.flush();
-      blink();
+        serialFlush();
     }
     else
     {
-      digitalWrite(LED_BUILTIN, HIGH);
       uint8_t payload = check_buffer[2];
       uint8_t message_buffer[payload];
       COMPUTER_SERIAL.readBytes(message_buffer, payload);
@@ -113,36 +129,37 @@ void recieveCommands()
         uint8_t id = message_buffer[i];
         uint8_t command = message_buffer[i + 1];
         uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
-        if ((command == 58) && (full_byte <= 4095))
+        if ((command == GOAL_POSITION) && (full_byte <= 4095))
         {
-          dxl.writeControlTableItem(command, id, full_byte);
+            dynamixelWrite(id, command, full_byte);
+         
+          
           //setCurrentPositionAndVelocity(id, full_byte);
-        }
-        else
-        {
+        }else {
           dxl.writeControlTableItem(command, id, full_byte);
         }
       }
       // flushes the serial buffer if the footer doesn't equal 244
       if (message_buffer[payload - 1] != 244)
       {
-        blink();
-        COMPUTER_SERIAL.flush();
+          serialFlush();
       }
     }
   }
 }
+
+
 unsigned long last_serial = 0;
 unsigned long time_now = 0;
 void loop()
 {
   //sends positions every 100 milliseconds
   time_now = millis();
-  if ((time_now - last_serial) >= transferRate)
+  if ((time_now - last_serial) >= 100)
   {
     recieveCommands();
-    sendPositions();
-    last_serial = millis();
+    //sendPositions();
+    last_serial = time_now;
     ;
   }
 }
