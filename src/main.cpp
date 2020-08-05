@@ -35,6 +35,7 @@ void setup()
   {
     // set operating mode to position
     dxl.setOperatingMode(id, OP_POSITION);
+    dxl.writeControlTableItem(id, MOVING_SPEED, 500);
     dxl.torqueOn(id);
     dxl.writeControlTableItem(MAX_TORQUE, id, 200);
   }
@@ -108,7 +109,7 @@ void setCurrentPositionAndVelocity(uint16_t goal_position, uint8_t dynid)
 void recieveCommands()
 {
   // read dynamixel control table commands and pass them on to the Dynamixels
-  if (COMPUTER_SERIAL.available() > 3)
+  if (COMPUTER_SERIAL.available() >= 3)
   {
     // reads two bytes of header and one byte for the payload. If the two header bytes are equal to 60000 then read in a number of bytes equal to the payload.
     char check_buffer[3];
@@ -132,6 +133,7 @@ void recieveCommands()
         if ((command == GOAL_POSITION) && (full_byte <= 4095))
         {
             dynamixelWrite(id, command, full_byte);
+            //dxl.writeControlTableItem(command, id, full_byte);
          
           
           //setCurrentPositionAndVelocity(id, full_byte);
@@ -157,9 +159,10 @@ void loop()
   time_now = millis();
   if ((time_now - last_serial) >= 100)
   {
-    recieveCommands();
     //sendPositions();
     last_serial = time_now;
-    ;
+    
   }
+
+    recieveCommands();
 }
