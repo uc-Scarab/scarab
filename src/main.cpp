@@ -36,8 +36,8 @@ void setup()
     // set operating mode to position
     dxl.setOperatingMode(id, OP_POSITION);
     dxl.writeControlTableItem(id, MOVING_SPEED, 500);
+    dxl.writeControlTableItem(TORQUE_LIMIT, id, 500);
     dxl.torqueOn(id);
-    dxl.writeControlTableItem(MAX_TORQUE, id, 200);
   }
 }
 
@@ -117,6 +117,7 @@ void recieveCommands()
     uint16_t check = INT_JOIN_BYTE(check_buffer[1], check_buffer[0]);
     if (check != 60000)
     {
+        blink();
         serialFlush();
     }
     else
@@ -144,6 +145,7 @@ void recieveCommands()
       // flushes the serial buffer if the footer doesn't equal 244
       if (message_buffer[payload - 1] != 244)
       {
+          blink();
           serialFlush();
       }
     }
@@ -159,7 +161,7 @@ void loop()
   time_now = millis();
   if ((time_now - last_serial) >= 100)
   {
-    //sendPositions();
+    sendPositions();
     last_serial = time_now;
     
   }
