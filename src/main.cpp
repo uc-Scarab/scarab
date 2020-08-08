@@ -30,6 +30,7 @@ void setup()
   for (int id = 1; id <= 25; id++)
   {
     dxl.torqueOff(id);
+    dxl.writeControlTableItem(MAX_TORQUE, id, 1023);
   }
   for (int id = 1; id <= 25; id++)
   {
@@ -85,7 +86,7 @@ void blink()
   digitalWrite(LED_BUILTIN, HIGH);
   digitalWrite(LED_BUILTIN, LOW);
 }
-void setCurrentPositionAndVelocity(uint16_t goal_position, uint8_t dynid)
+void setCurrentPositionAndVelocity(uint16_t dynid, uint16_t goal_position)
 {
   //Takes goal and current servo position and calculates velocity required to reach goal within 100ms.
   //
@@ -94,17 +95,20 @@ void setCurrentPositionAndVelocity(uint16_t goal_position, uint8_t dynid)
     goal_position = 4095;
   }
   uint16_t cur_pos = dxl.readControlTableItem(PRESENT_POSITION, dynid);
-  uint16_t goal_speed = goal_position - cur_pos;
-  goal_speed = (goal_speed / 0.1);
-  goal_speed = ((goal_speed / 651.7587) * 84.0731);
-  goal_speed = round(goal_speed);
-  if (goal_speed > 1023)
+  uint16_t displacement = goal_position - cur_pos;
+  float goal_speed = (displacement / 0.1);
+  float goal_speed_raw = ((goal_speed / 651.7587) * 84.0731);
+  uint16_t goal_speed_raw_rounded = round(goal_speed_raw);
+  if (goal_speed_raw_rounded > 1023)
   {
-    goal_speed = 1023;
+    goal_speed_raw_rounded = 1023;
   }
-  uint16_t overshoot_position = cur_pos + (cur_pos - goal_position) * 1.5;
-  dxl.writeControlTableItem(MOVING_SPEED, dynid, goal_speed);
+  uint16_t overshoot_position = cur_pos + (goal_position - cur_pos) * 1.5;
+  // dynamixelWrite(MOVING_SPEED, dynid, goal_speed_raw_rounded);
+  // dynamixelWrite(GOAL_POSITION, dynid, overshoot_position);
   dxl.writeControlTableItem(GOAL_POSITION, dynid, overshoot_position);
+  dxl.writeControlTableItem(MOVING_SPEED, dynid, goal_speed_raw_rounded);
+
 }
 void recieveCommands()
 {
@@ -133,11 +137,11 @@ void recieveCommands()
         uint16_t full_byte = INT_JOIN_BYTE(message_buffer[i + 3], message_buffer[i + 2]);
         if ((command == GOAL_POSITION) && (full_byte <= 4095))
         {
-            dynamixelWrite(id, command, full_byte);
+            //  dynamixelWrite(id, command, full_byte);
             //dxl.writeControlTableItem(command, id, full_byte);
          
           
-          //setCurrentPositionAndVelocity(id, full_byte);
+          setCurrentPositionAndVelocity(id, full_byte);
         }else {
           dxl.writeControlTableItem(command, id, full_byte);
         }
