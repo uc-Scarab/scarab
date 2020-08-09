@@ -17,6 +17,15 @@ const uint8_t DXL_DIR_PIN = 2; // DYNAMIXEL Shield DIR PIN
 
 const float DXL_PROTOCOL_VERSION = 1.0; //changed from 2.0 to 1.0
 Dynamixel2Arduino dxl(DXL_SERIAL, DXL_DIR_PIN);
+
+class Motors {
+  public:
+  int id;
+  int current_position;
+  int previous_position;
+}
+
+
 void setup()
 {
   // put your setup code here, to run once:
@@ -39,6 +48,16 @@ void setup()
     dxl.writeControlTableItem(id, MOVING_SPEED, 500);
     dxl.writeControlTableItem(TORQUE_LIMIT, id, 500);
     dxl.torqueOn(id);
+    
+  for (int id = 1; id<25; id++){
+  Motors loopObject;
+  loopObject.motor_id = id;
+  int position = dxl.readControlTableItem(PRESENT_POSITION, id)
+  loobObject.current_position = position;
+  loobObjetct.previous_position = position;
+
+}
+ 
   }
 }
 
