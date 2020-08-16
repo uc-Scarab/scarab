@@ -101,6 +101,7 @@ void setCurrentPositionAndVelocity(uint16_t dynid, uint16_t goal_position)
 //Extended Math: (goal_speed / (4095/6.283) * ((0.1591/0.0166)/0.114))
 //4095 = range of DynRawPos from 0 ... 4095, 6.283 = 360 deg in radians.
 //0.1591 = angular frequency of 1 radian per second, 0.0166 = angular frequency of 1 revolution per second.
+//0.114 = 1 revolution per second to DynRawSpeed range from 0 ... 1023.
   uint16_t goal_speed_raw_rounded = round(goal_speed_raw);
   if (goal_speed_raw_rounded > 1023)
   {
