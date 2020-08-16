@@ -98,7 +98,7 @@ void setCurrentPositionAndVelocity(uint16_t dynid, uint16_t goal_position)
   uint16_t displacement = goal_position - cur_pos;
   float goal_speed = (displacement / 0.1);
   float goal_speed_raw = ((goal_speed / 651.7587) * 84.0731);
-//Extended DynRawSpeed Math: (goal_speed / (4095/6.283) * (0.1591/0.0166))
+//Extended Math: (goal_speed / (4095/6.283) * ((0.1591/0.0166)/0.114))
 //4095 = range of DynRawPos from 0 ... 4095, 6.283 = 360 deg in radians.
 //0.1591 = angular frequency of 1 radian per second, 0.0166 = angular frequency of 1 revolution per second.
   uint16_t goal_speed_raw_rounded = round(goal_speed_raw);
